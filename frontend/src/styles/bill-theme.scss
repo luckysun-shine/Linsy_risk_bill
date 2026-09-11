@@ -1,0 +1,133 @@
+// 林氏风控年度账单 — 星际薄荷极光主题
+$bill-mint: #20b2aa;
+$bill-aurora: #40e0d0;
+$bill-space-deep: #041f24;
+$bill-space-mid: #0a3d42;
+
+$bill-brand: #148f88;
+$bill-brand-deep: #0a5c58;
+$bill-brand-dark: #052e2c;
+
+$bill-ribbon-start: #20b2aa;
+$bill-ribbon-end: #40e0d0;
+$bill-ribbon-shadow: rgba(4, 31, 36, 0.45);
+$bill-title-shadow: #0a6a62;
+
+$bill-accent-yellow: #ffd700;
+$bill-accent-orange: #ff8c00;
+$bill-accent-sun: #ffd700;
+$bill-accent-gold: #ff8c00;
+$bill-accent-gold-shadow: #cc7000;
+
+$bill-link-blue: #1a9e96;
+$bill-teal: #40e0d0;
+$bill-sky-blue: #5ce8dc;
+$bill-alert-red: #ff6b6b;
+
+$bill-card-glass: rgba(255, 255, 255, 0.22);
+$bill-card-glass-solid: rgba(255, 255, 255, 0.32);
+$bill-card-border: rgba(255, 255, 255, 0.48);
+$bill-card-shadow:
+  0 10px 36px rgba(4, 31, 36, 0.2),
+  inset 0 1px 0 rgba(255, 255, 255, 0.42);
+
+@mixin bill-cosmic-background {
+  background:
+    radial-gradient(ellipse 70% 55% at 92% 48%, rgba(255, 230, 120, 0.28), transparent 58%),
+    radial-gradient(ellipse 55% 45% at 88% 52%, rgba(64, 224, 208, 0.32), transparent 62%),
+    radial-gradient(ellipse 100% 60% at 50% 110%, rgba(64, 224, 208, 0.22), transparent 55%),
+    radial-gradient(ellipse 90% 55% at 75% 8%, rgba(255, 215, 0, 0.2), transparent 52%),
+    radial-gradient(circle at 15% 85%, rgba(64, 224, 208, 0.38), transparent 42%),
+    radial-gradient(circle at 88% 72%, rgba(255, 140, 0, 0.14), transparent 38%),
+    radial-gradient(circle at 50% 45%, rgba(120, 90, 255, 0.06), transparent 50%),
+    linear-gradient(118deg, $bill-space-deep 0%, $bill-space-mid 38%, $bill-mint 68%, $bill-aurora 100%);
+}
+
+@mixin bill-noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+@mixin bill-sky-background {
+  @include bill-cosmic-background;
+}
+
+@mixin bill-glass-card {
+  background: $bill-card-glass-solid;
+  border: 1px solid $bill-card-border;
+  border-radius: 18px;
+  box-shadow: $bill-card-shadow;
+  /* 移动端 blur 很贵：默认降到 8px，滑动时还会被 BillView 临时关掉 */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@mixin bill-glass-panel {
+  @include bill-glass-card;
+  background: $bill-card-glass-solid;
+}
+
+@mixin bill-ribbon {
+  display: inline-block;
+  background: linear-gradient(90deg, $bill-ribbon-start, $bill-aurora);
+  color: #fff;
+  font-weight: 800;
+  padding: 7px 28px;
+  transform: skew(-8deg);
+  box-shadow:
+    0 6px 0 $bill-ribbon-shadow,
+    0 0 24px rgba(64, 224, 208, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  span,
+  &::before {
+    transform: skew(8deg);
+  }
+}
+
+@mixin bill-section-title {
+  margin: 0;
+  color: #fff;
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1.1;
+  text-shadow:
+    2px 2px 0 $bill-title-shadow,
+    0 0 20px rgba(64, 224, 208, 0.45);
+}
+
+@mixin bill-body-text {
+  color: $bill-brand-deep;
+  font-weight: 600;
+}
+
+@mixin bill-body-text-on-dark {
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+  text-shadow: 0 1px 8px rgba(4, 31, 36, 0.35);
+}
+
+@mixin bill-highlight-num {
+  color: $bill-accent-yellow;
+  font-weight: 800;
+}
+
+@mixin bill-accent-num {
+  color: $bill-accent-yellow;
+  font-weight: 800;
+  text-shadow:
+    0 0 18px rgba(255, 215, 0, 0.45),
+    0 4px 14px rgba(255, 140, 0, 0.25);
+}
+
+@mixin bill-cta-button {
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  color: $bill-brand-dark;
+  font-weight: 900;
+  background: linear-gradient(180deg, #ffe566 0%, $bill-accent-yellow 52%, $bill-accent-orange 100%);
+  box-shadow:
+    0 8px 0 $bill-accent-gold-shadow,
+    0 14px 28px rgba(255, 140, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}

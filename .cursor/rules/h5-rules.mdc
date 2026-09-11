@@ -1,0 +1,17 @@
+---
+description: H5 risk bill slide development rules
+globs: frontend/src/components/slides/**/*.vue
+alwaysApply: false
+---
+
+# H5 Slide Rules
+
+1. Every slide component must accept `isActive: boolean` (SlideProps).
+2. Prefer animating `transform` and `opacity` only; avoid layout-thrashing properties.
+3. Use `100dvh` and `overflow: hidden` on full-screen slide roots where applicable.
+4. Chart-heavy slides (`SlideStats`, `SlideRiskPie`, `SlideCluster`, `SlideManagerRank`, etc.) should be loaded via `defineAsyncComponent` from `BillView.vue`.
+5. Guard nullable API fields with `displayValue()` / `formatCurrency()` from `@/utils/displayValue`; use `--` or hide sections when data is missing.
+6. Initialize ECharts only when `isActive` is true; dispose on deactivate and unmount.
+7. Use Pinia `billStore` for bill data; do not hardcode user metrics in slides.
+8. Swiper container: vertical, `threshold` 15, `longSwipesRatio` 0.15, no pagination module in production bill flow.
+9. Pages with `type: 'manager'` only render when `user.role_key === 'manager'`.

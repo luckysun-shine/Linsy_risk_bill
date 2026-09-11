@@ -1,0 +1,106 @@
+openapi: 3.0.3
+info:
+  title: Linsy Risk Bill API
+  description: H5 年度风险账单 — 数据与链接管理 API
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api
+    description: Local development
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+  /auth/login:
+    post:
+      summary: Admin login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [username, password]
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: JWT token
+  /bill/data:
+    get:
+      summary: Get bill data by token (query)
+      parameters:
+        - name: token
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Bill payload
+  /bill/{year}/{token}/data:
+    get:
+      summary: Get bill data by year and token
+      parameters:
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Bill payload
+  /admin/import:
+    post:
+      summary: Import or update single employee bill
+      security:
+        - bearerAuth: []
+        - apiKeyAuth: []
+      responses:
+        '200':
+          description: Updated
+        '201':
+          description: Created
+  /admin/import/bulk:
+    post:
+      summary: Bulk import bills
+      security:
+        - bearerAuth: []
+        - apiKeyAuth: []
+      responses:
+        '201':
+          description: Import results
+  /admin/links:
+    get:
+      summary: List bill links
+      security:
+        - bearerAuth: []
+    post:
+      summary: Create bill link
+      security:
+        - bearerAuth: []
+  /admin/stats:
+    get:
+      summary: Access statistics
+      security:
+        - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

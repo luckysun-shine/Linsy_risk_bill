@@ -1,0 +1,1313 @@
+{
+  "user": {
+    "name": "张三",
+    "emp_id": "XM882",
+    "department": "风控监察部",
+    "role_key": "staff",
+    "company": "林氏家居",
+    "days": 1280
+  },
+  "summary_data": {
+    "risk_score": 92,
+    "rank_percent": 90,
+    "total_models": 1254,
+    "savings": 128500,
+    "keyword": "风险防控守护者",
+    "risk_level": "优"
+  },
+  "details_data": {
+    "risk_categories": [
+      {
+        "name": "渠道管理",
+        "value": 27.5,
+        "color": "#20B2AA"
+      },
+      {
+        "name": "供应链管理",
+        "value": 19.64,
+        "color": "#FFD700"
+      },
+      {
+        "name": "人力资源管理",
+        "value": 13.21,
+        "color": "#40E0D0"
+      },
+      {
+        "name": "财务管理",
+        "value": 10.36,
+        "color": "#FF8C00"
+      },
+      {
+        "name": "工程管理",
+        "value": 6.07,
+        "color": "#1A9E96"
+      },
+      {
+        "name": "行政管理",
+        "value": 5,
+        "color": "#5CE8DC"
+      },
+      {
+        "name": "物流仓储管理",
+        "value": 4.29,
+        "color": "#0A5C58"
+      },
+      {
+        "name": "信数管理",
+        "value": 3.93,
+        "color": "#FFE566"
+      },
+      {
+        "name": "品质管理",
+        "value": 3.21,
+        "color": "#148F88"
+      },
+      {
+        "name": "研发管理",
+        "value": 2.86,
+        "color": "#CC9A06"
+      },
+      {
+        "name": "营销管理",
+        "value": 1.43,
+        "color": "#32C8B8"
+      },
+      {
+        "name": "采购与付款",
+        "value": 1.43,
+        "color": "#E6A800"
+      },
+      {
+        "name": "产品管理",
+        "value": 0.71,
+        "color": "#7AE8DC"
+      },
+      {
+        "name": "信息系统",
+        "value": 0.36,
+        "color": "#0A3D42"
+      }
+    ],
+    "rectification_categories": [
+      {
+        "name": "其他整改",
+        "value": 35,
+        "color": "#20B2AA"
+      },
+      {
+        "name": "挽损整改",
+        "value": 28,
+        "color": "#FF8C00"
+      },
+      {
+        "name": "流程整改",
+        "value": 24,
+        "color": "#40E0D0"
+      },
+      {
+        "name": "系统整改",
+        "value": 12,
+        "color": "#FFD700"
+      },
+      {
+        "name": "追责通报",
+        "value": 1,
+        "color": "#0A5C58"
+      }
+    ],
+    "rectification_overview": {
+      "avg_rate_note": "平均关闭率为一级部门维度平均关闭情况，同整体任务关闭率有差异",
+      "year_section": {
+        "title": "25年整改详情",
+        "avg_close_rate": 81,
+        "departments": [
+          {
+            "name": "总经办",
+            "problem": 2,
+            "should_rectify": 1,
+            "closed": 1,
+            "close_rate": 100
+          },
+          {
+            "name": "财经中心",
+            "problem": 21,
+            "should_rectify": 12,
+            "closed": 11,
+            "close_rate": 91.7
+          },
+          {
+            "name": "人力资源中心",
+            "problem": 8,
+            "should_rectify": 6,
+            "closed": 5,
+            "close_rate": 83.3
+          },
+          {
+            "name": "品牌市场中心",
+            "problem": 15,
+            "should_rectify": 11,
+            "closed": 10,
+            "close_rate": 90.9
+          },
+          {
+            "name": "产品中心",
+            "problem": 26,
+            "should_rectify": 21,
+            "closed": 19,
+            "close_rate": 90.5
+          },
+          {
+            "name": "整家事业部",
+            "problem": 18,
+            "should_rectify": 14,
+            "closed": 13,
+            "close_rate": 92.9
+          },
+          {
+            "name": "大家居新零售",
+            "problem": 64,
+            "should_rectify": 55,
+            "closed": 51,
+            "close_rate": 92.7
+          },
+          {
+            "name": "电商事业部",
+            "problem": 49,
+            "should_rectify": 41,
+            "closed": 37,
+            "close_rate": 90.2
+          },
+          {
+            "name": "新媒体事业部",
+            "problem": 12,
+            "should_rectify": 9,
+            "closed": 8,
+            "close_rate": 88.9
+          },
+          {
+            "name": "海外经营中心",
+            "problem": 10,
+            "should_rectify": 8,
+            "closed": 7,
+            "close_rate": 87.5
+          },
+          {
+            "name": "海外B2B事业部",
+            "problem": 7,
+            "should_rectify": 5,
+            "closed": 5,
+            "close_rate": 100
+          },
+          {
+            "name": "海外B2C事业部",
+            "problem": 9,
+            "should_rectify": 7,
+            "closed": 6,
+            "close_rate": 85.7
+          },
+          {
+            "name": "供应链产品中心",
+            "problem": 14,
+            "should_rectify": 11,
+            "closed": 10,
+            "close_rate": 90.9
+          },
+          {
+            "name": "全球交付中心",
+            "problem": 22,
+            "should_rectify": 18,
+            "closed": 16,
+            "close_rate": 88.9
+          },
+          {
+            "name": "质量中心",
+            "problem": 11,
+            "should_rectify": 9,
+            "closed": 8,
+            "close_rate": 88.9
+          }
+        ]
+      },
+      "history_section": {
+        "title": "历史整改详情",
+        "avg_close_rate": 98.9,
+        "departments": [
+          {
+            "name": "总经办",
+            "problem": 12,
+            "should_rectify": 10,
+            "closed": 10,
+            "close_rate": 100
+          },
+          {
+            "name": "财经中心",
+            "problem": 86,
+            "should_rectify": 72,
+            "closed": 71,
+            "close_rate": 98.6
+          },
+          {
+            "name": "人力资源中心",
+            "problem": 45,
+            "should_rectify": 38,
+            "closed": 38,
+            "close_rate": 100
+          },
+          {
+            "name": "品牌市场中心",
+            "problem": 62,
+            "should_rectify": 54,
+            "closed": 53,
+            "close_rate": 98.1
+          },
+          {
+            "name": "产品中心",
+            "problem": 98,
+            "should_rectify": 82,
+            "closed": 81,
+            "close_rate": 98.8
+          },
+          {
+            "name": "整家事业部",
+            "problem": 74,
+            "should_rectify": 65,
+            "closed": 64,
+            "close_rate": 98.5
+          },
+          {
+            "name": "大家居新零售",
+            "problem": 186,
+            "should_rectify": 162,
+            "closed": 160,
+            "close_rate": 98.8
+          },
+          {
+            "name": "电商事业部",
+            "problem": 152,
+            "should_rectify": 128,
+            "closed": 127,
+            "close_rate": 99.2
+          },
+          {
+            "name": "新媒体事业部",
+            "problem": 38,
+            "should_rectify": 32,
+            "closed": 32,
+            "close_rate": 100
+          },
+          {
+            "name": "海外经营中心",
+            "problem": 42,
+            "should_rectify": 36,
+            "closed": 35,
+            "close_rate": 97.2
+          },
+          {
+            "name": "海外B2B事业部",
+            "problem": 28,
+            "should_rectify": 24,
+            "closed": 24,
+            "close_rate": 100
+          },
+          {
+            "name": "海外B2C事业部",
+            "problem": 35,
+            "should_rectify": 30,
+            "closed": 29,
+            "close_rate": 96.7
+          },
+          {
+            "name": "供应链产品中心",
+            "problem": 58,
+            "should_rectify": 48,
+            "closed": 48,
+            "close_rate": 100
+          },
+          {
+            "name": "全球交付中心",
+            "problem": 92,
+            "should_rectify": 78,
+            "closed": 77,
+            "close_rate": 98.7
+          },
+          {
+            "name": "质量中心",
+            "problem": 48,
+            "should_rectify": 40,
+            "closed": 40,
+            "close_rate": 100
+          },
+          {
+            "name": "审计监察",
+            "problem": 22,
+            "should_rectify": 18,
+            "closed": 18,
+            "close_rate": 100
+          }
+        ]
+      },
+      "alert": {
+        "year": 2025,
+        "should_rectify_total": 116,
+        "closed_total": 108,
+        "close_rate": 93.1,
+        "top_departments": [
+          "大家居新零售",
+          "产品中心",
+          "财经中心"
+        ],
+        "salvage_amount": 10300000,
+        "salvage_display": "1030万元",
+        "report_date": "2025.12"
+      }
+    },
+    "radar": {
+      "dimensions": [
+        "财务风控",
+        "流程合规",
+        "信息安全",
+        "运营效率",
+        "创新合规"
+      ],
+      "values": [
+        85,
+        72,
+        90,
+        78,
+        88
+      ]
+    },
+    "compliance_education": {
+      "intro": "过去一年，我们通过多元化的宣教手段，深耕廉洁合规领域，各项关键指标均实现了提升：",
+      "items": [
+        {
+          "title": "宣教矩阵全覆盖",
+          "paragraphs": [
+            [
+              {
+                "text": "发布廉洁发文 "
+              },
+              {
+                "text": "13",
+                "accent": true
+              },
+              {
+                "text": " 篇（含以案示警 "
+              },
+              {
+                "text": "2",
+                "accent": true
+              },
+              {
+                "text": " 篇）、廉洁视频 "
+              },
+              {
+                "text": "7",
+                "accent": true
+              },
+              {
+                "text": " 篇。"
+              }
+            ],
+            [
+              {
+                "text": "结合“廉洁月”专项活动，实现 "
+              },
+              {
+                "text": "4700",
+                "accent": true
+              },
+              {
+                "text": " 人次参与阅读，覆盖率达 "
+              },
+              {
+                "text": "69%",
+                "accent": true
+              },
+              {
+                "text": "，同比稳步增长 "
+              },
+              {
+                "text": "11%",
+                "accent": true
+              },
+              {
+                "text": "。"
+              }
+            ]
+          ]
+        },
+        {
+          "title": "培训效能大提升",
+          "paragraphs": [
+            [
+              {
+                "text": "举办廉洁主题活动共 "
+              },
+              {
+                "text": "17",
+                "accent": true
+              },
+              {
+                "text": " 场，"
+              },
+              {
+                "text": "100%",
+                "accent": true
+              },
+              {
+                "text": " 覆盖关键岗位。"
+              }
+            ],
+            [
+              {
+                "text": "参与人次达到 "
+              },
+              {
+                "text": "1162",
+                "accent": true
+              },
+              {
+                "text": " 人次，培训覆盖率同比增长 "
+              },
+              {
+                "text": "54%",
+                "accent": true
+              },
+              {
+                "text": "，有效强化了关键岗位的廉洁意识。"
+              }
+            ]
+          ]
+        },
+        {
+          "title": "合规风气显著净化",
+          "paragraphs": [
+            [
+              {
+                "text": "员工从“被动合规”转向“主动报备”。"
+              }
+            ],
+            [
+              {
+                "text": "全年收到廉洁报备 "
+              },
+              {
+                "text": "1052",
+                "accent": true
+              },
+              {
+                "text": " 次，廉洁自律的职场氛围持续向好。"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "milestones": [
+      {
+        "date": "2025-03-12",
+        "title": "首例交叉预警",
+        "amount": 12000
+      },
+      {
+        "date": "2025-08-15",
+        "title": "最大单笔预警",
+        "amount": 52000
+      },
+      {
+        "date": "2025-11-02",
+        "title": "批量异常拦截",
+        "amount": 38000
+      }
+    ],
+    "dept_battle_report": {
+      "subtitle": "监察 · 审计 · 内控，三线协同守住底线",
+      "departments": [
+        {
+          "name": "监察部",
+          "lead": "监察部在过去的一年里",
+          "lines": [
+            [
+              {
+                "text": "发起了监察案件 "
+              },
+              {
+                "text": "78",
+                "accent": true
+              },
+              {
+                "text": " 起"
+              }
+            ],
+            [
+              {
+                "text": "共向违规员工发出红牌 "
+              },
+              {
+                "text": "8",
+                "accent": true
+              },
+              {
+                "text": " 张，黄牌 "
+              },
+              {
+                "text": "1",
+                "accent": true
+              },
+              {
+                "text": " 张，蓝牌 "
+              },
+              {
+                "text": "3",
+                "accent": true
+              },
+              {
+                "text": " 张"
+              }
+            ],
+            [
+              {
+                "text": "涉及违规合作商累计 "
+              },
+              {
+                "text": "20",
+                "accent": true
+              },
+              {
+                "text": " 家"
+              }
+            ],
+            [
+              {
+                "text": "累计直接挽回金额 "
+              },
+              {
+                "text": "357",
+                "accent": true
+              },
+              {
+                "text": " 万元"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "审计部",
+          "lead": "审计部在过去的一年里",
+          "lines": [
+            [
+              {
+                "text": "完成审计项目 "
+              },
+              {
+                "text": "25",
+                "accent": true
+              },
+              {
+                "text": " 起"
+              }
+            ],
+            [
+              {
+                "text": "一级部门覆盖率达到 "
+              },
+              {
+                "text": "100%",
+                "accent": true
+              }
+            ],
+            [
+              {
+                "text": "到期应整改任务数 "
+              },
+              {
+                "text": "91",
+                "accent": true
+              },
+              {
+                "text": " 个"
+              }
+            ],
+            [
+              {
+                "text": "完成到期整改任务数 "
+              },
+              {
+                "text": "79",
+                "accent": true
+              },
+              {
+                "text": " 个"
+              }
+            ],
+            [
+              {
+                "text": "到期风险关闭率 "
+              },
+              {
+                "text": "86.8%",
+                "accent": true
+              }
+            ],
+            [
+              {
+                "text": "累计挽损金额 "
+              },
+              {
+                "text": "626.3",
+                "accent": true
+              },
+              {
+                "text": " 万元"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "内控部",
+          "lead": "内控部在过去的一年里",
+          "lines": [
+            [
+              {
+                "text": "完成内控项目 "
+              },
+              {
+                "text": "4",
+                "accent": true
+              },
+              {
+                "text": " 起"
+              }
+            ],
+            [
+              {
+                "text": "发布整改任务数 "
+              },
+              {
+                "text": "26",
+                "accent": true
+              },
+              {
+                "text": " 个"
+              }
+            ],
+            [
+              {
+                "text": "到期应整改任务数 "
+              },
+              {
+                "text": "26",
+                "accent": true
+              },
+              {
+                "text": " 个"
+              }
+            ],
+            [
+              {
+                "text": "完成到期整改任务数 "
+              },
+              {
+                "text": "26",
+                "accent": true
+              },
+              {
+                "text": " 个"
+              }
+            ],
+            [
+              {
+                "text": "到期风险关闭率 "
+              },
+              {
+                "text": "100%",
+                "accent": true
+              }
+            ],
+            [
+              {
+                "text": "累计挽损金额 "
+              },
+              {
+                "text": "47.6",
+                "accent": true
+              },
+              {
+                "text": " 万元"
+              }
+            ]
+          ]
+        }
+      ],
+      "tip": {
+        "title": "风控提示",
+        "body": [
+          {
+            "text": "2025",
+            "accent": true
+          },
+          {
+            "text": "年，一些在管理过程中容易被忽略的员工不当行为和管理风气问题需要引起关注：例如员工外出不履职、不尽责，花钱的必要性，成本的合理性；上述情况需管理者躬身入局，认真审视。"
+          }
+        ]
+      }
+    },
+    "violations": [
+      {
+        "name": "虚假报销",
+        "count": 23
+      },
+      {
+        "name": "飞单",
+        "count": 15
+      },
+      {
+        "name": "违规返利",
+        "count": 12
+      },
+      {
+        "name": "合同篡改",
+        "count": 8
+      },
+      {
+        "name": "数据泄露",
+        "count": 6
+      }
+    ],
+    "risk_report": {
+      "headline": [
+        {
+          "text": "公司持续推进"
+        },
+        {
+          "text": "重大风险上报机制",
+          "strong": true
+        }
+      ],
+      "paragraphs": [
+        [
+          {
+            "text": "2025",
+            "accent": true
+          },
+          {
+            "text": "年共收到风险事件上报"
+          },
+          {
+            "text": "8",
+            "accent": true
+          },
+          {
+            "text": "项，涵盖经营类及舆情类风险，涉及电商事业部、产品中心、客户服务中心、大家居新零售事业部等多个业务部门。"
+          }
+        ],
+        [
+          {
+            "text": "通过跨部门协同研判与快速响应机制，相关风险事件均制定了针对性解决方案并推进落地执行。截至目前，"
+          },
+          {
+            "text": "8",
+            "accent": true
+          },
+          {
+            "text": "项上报风险中已关闭"
+          },
+          {
+            "text": "7",
+            "accent": true
+          },
+          {
+            "text": "项，"
+          },
+          {
+            "text": "1",
+            "accent": true
+          },
+          {
+            "text": "项仍处于持续跟进中。整体实现了对重大风险的及时发现、有效干预与过程可控管理，切实降低了经营损失及品牌负面影响，为公司稳健经营提供了有力保障。"
+          }
+        ]
+      ],
+      "praise": {
+        "title": "风控点赞",
+        "body": [
+          {
+            "text": "2025",
+            "accent": true
+          },
+          {
+            "text": "年，业务伙伴们积极主动向审监部门咨询事项共计"
+          },
+          {
+            "text": "148",
+            "accent": true
+          },
+          {
+            "text": "项，涵盖供应商管理、营销投放、合同合规及员工廉洁等关键场景，审监部门通过响应咨询、专业指导和需求介入支持等方式，与业务伙伴们一道，争取把工作一开始就做对，有效识别并提前防范风险，助力业务成功。"
+          }
+        ]
+      },
+      "closing": [
+        "企业的抗风险能力是由公司、管理者、员工共同构建的，在面对大环境不好的情景下，希望同行者一起奋斗，让我们的组织在面对风险时，更有策略，更有韧劲；",
+        "审计监察部的使命是助力企业成功，促进业务健康发展，我们愿与业务伙伴一道，共同提升风险防御能力，实现公司的高质量增长。"
+      ]
+    },
+    "risk_classification_tree": {
+      "rootTitle": "风控分类宣导",
+      "rectification": {
+        "title": "整改分类",
+        "icon": "📋",
+        "items": [
+          "追责通报",
+          "流程整改",
+          "挽损整改",
+          "系统整改",
+          "其他整改"
+        ]
+      },
+      "risk": {
+        "title": "风险分类",
+        "icon": "🛡️",
+        "columns": [
+          {
+            "up": {
+              "name": "信数管理",
+              "icon": "🖥️",
+              "children": [
+                "信息安全",
+                "系统管理",
+                "物资管理"
+              ]
+            },
+            "down": {
+              "name": "渠道管理",
+              "icon": "🗂️",
+              "children": [
+                "TOB业务",
+                "TOC业务",
+                "大家及特殊客户"
+              ]
+            }
+          },
+          {
+            "up": {
+              "name": "物流仓储管理",
+              "icon": "📦",
+              "children": [
+                "物流管理",
+                "仓储管理"
+              ]
+            },
+            "down": {
+              "name": "战略管理",
+              "icon": "🧭",
+              "children": [
+                "集分权管理",
+                "经营考核",
+                "战略项目管理"
+              ]
+            }
+          },
+          {
+            "up": {
+              "name": "供应链管理",
+              "icon": "🔗",
+              "children": [
+                "采购管理",
+                "供应商管理",
+                "产业园管理"
+              ]
+            },
+            "down": {
+              "name": "行政管理",
+              "icon": "📝",
+              "children": [
+                "差旅",
+                "会务",
+                "业务招待",
+                "办公杂费",
+                "物业租赁",
+                "后勤服务",
+                "固定资产"
+              ]
+            }
+          },
+          {
+            "up": {
+              "name": "财务管理",
+              "icon": "💰",
+              "children": [
+                "财报",
+                "税务",
+                "资金",
+                "预算",
+                "核算",
+                "投融资"
+              ]
+            }
+          },
+          {
+            "up": {
+              "name": "客服管理",
+              "icon": "🎧",
+              "children": [
+                "售前",
+                "售中",
+                "售后"
+              ]
+            },
+            "down": {
+              "name": "产品管理",
+              "icon": "📦",
+              "children": [
+                "价格管理",
+                "产品发布",
+                "上架与退市"
+              ]
+            }
+          },
+          {
+            "up": {
+              "name": "工程管理",
+              "icon": "⚙️",
+              "children": [
+                "基建工程",
+                "装修工程",
+                "其它工程"
+              ]
+            },
+            "down": {
+              "name": "人力资源管理",
+              "icon": "👥",
+              "children": [
+                "薪酬绩效",
+                "企业文化",
+                "培训",
+                "招聘",
+                "员工关系",
+                "外包"
+              ]
+            }
+          },
+          {
+            "up": {
+              "name": "印章与档案管理",
+              "icon": "🔏",
+              "children": [
+                "印章管理",
+                "证照管理",
+                "档案管理"
+              ]
+            }
+          },
+          {
+            "up": {
+              "name": "品质管理",
+              "icon": "🔍",
+              "children": [
+                "检验管理",
+                "质量保证"
+              ]
+            }
+          },
+          {
+            "up": {
+              "name": "研发管理",
+              "icon": "🧪",
+              "children": [
+                "产品设计",
+                "打样与验证"
+              ]
+            }
+          }
+        ],
+        "terminal": {
+          "name": "营销管理",
+          "icon": "📊",
+          "children": [
+            "线上推广",
+            "活动运营",
+            "线下推广",
+            "品牌推广",
+            "流量管理"
+          ]
+        }
+      }
+    },
+    "dept_focus_reports": [
+      {
+        "id": "audit",
+        "eyebrow": "在过去一年中",
+        "department": "财经中心",
+        "metrics": [
+          [
+            {
+              "text": "参与完成审计项目 "
+            },
+            {
+              "text": "3",
+              "accent": true
+            },
+            {
+              "text": " 起"
+            }
+          ],
+          [
+            {
+              "text": "我们一起参与整改项目 "
+            },
+            {
+              "text": "2",
+              "accent": true
+            },
+            {
+              "text": " 起"
+            }
+          ],
+          [
+            {
+              "text": "触发整改任务 "
+            },
+            {
+              "text": "8",
+              "accent": true
+            },
+            {
+              "text": " 个"
+            }
+          ],
+          [
+            {
+              "text": "关闭整改任务 "
+            },
+            {
+              "text": "8",
+              "accent": true
+            },
+            {
+              "text": " 个"
+            }
+          ],
+          [
+            {
+              "text": "未关闭任务 "
+            },
+            {
+              "text": "0",
+              "accent": true
+            },
+            {
+              "text": " 个"
+            }
+          ],
+          [
+            {
+              "text": "累计为公司避免损失 "
+            },
+            {
+              "text": "0",
+              "accent": true
+            },
+            {
+              "text": " 万元"
+            }
+          ]
+        ],
+        "tip": "建议加强对财经相关的系统账号权限管控、业务结算逻辑及数据准确性的复核。"
+      },
+      {
+        "id": "supervision",
+        "eyebrow": "在过去一年中",
+        "department": "财经中心",
+        "metrics": [
+          [
+            {
+              "text": "涉及监察事项 "
+            },
+            {
+              "text": "1",
+              "accent": true
+            },
+            {
+              "text": " 起"
+            }
+          ],
+          [
+            {
+              "text": "违规合作商数量 "
+            },
+            {
+              "text": "0",
+              "accent": true
+            },
+            {
+              "text": " 家"
+            }
+          ],
+          [
+            {
+              "text": "员工积分扣减申请发起 "
+            },
+            {
+              "text": "0",
+              "accent": true
+            },
+            {
+              "text": " 人次"
+            }
+          ],
+          [
+            {
+              "text": "共向违规员工发出红牌 "
+            },
+            {
+              "text": "0",
+              "accent": true
+            },
+            {
+              "text": " 张，黄牌 "
+            },
+            {
+              "text": "0",
+              "accent": true
+            },
+            {
+              "text": " 张，蓝牌 "
+            },
+            {
+              "text": "0",
+              "accent": true
+            },
+            {
+              "text": " 张"
+            }
+          ]
+        ],
+        "tip": "关键岗位多，各级管理者应时刻保持关注。2026年保持更多的信息同频，员工廉洁从业意识提升，减少舞弊风险。"
+      },
+      {
+        "id": "control",
+        "eyebrow": "在过去一年中",
+        "department": "财经中心",
+        "metrics": [
+          [
+            {
+              "text": "参与完成内控项目 "
+            },
+            {
+              "text": "4",
+              "accent": true
+            },
+            {
+              "text": " 起"
+            }
+          ],
+          [
+            {
+              "text": "触发整改任务 "
+            },
+            {
+              "text": "18",
+              "accent": true
+            },
+            {
+              "text": " 个"
+            }
+          ],
+          [
+            {
+              "text": "到期应关闭任务 "
+            },
+            {
+              "text": "18",
+              "accent": true
+            },
+            {
+              "text": " 个"
+            }
+          ],
+          [
+            {
+              "text": "关闭整改任务 "
+            },
+            {
+              "text": "18",
+              "accent": true
+            },
+            {
+              "text": " 个"
+            }
+          ],
+          [
+            {
+              "text": "未关闭任务 "
+            },
+            {
+              "text": "0",
+              "accent": true
+            },
+            {
+              "text": " 个"
+            }
+          ],
+          [
+            {
+              "text": "累计为公司避免损失 "
+            },
+            {
+              "text": "44.5",
+              "accent": true
+            },
+            {
+              "text": " 万元"
+            }
+          ]
+        ],
+        "tip": "建议加强对前端业务链路的下探，定期回顾系统规则与业务场景的一致性。"
+      }
+    ]
+  },
+  "page_config": [
+    {
+      "type": "cover",
+      "headline": "2025年风险账单来啦!",
+      "title": "征途坎坷成画",
+      "subtitle": "沿途波澜皆景"
+    },
+    {
+      "type": "risk_pie"
+    },
+    {
+      "type": "risk_rectification"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "milestone"
+    },
+    {
+      "type": "dept_focus",
+      "focusId": "audit"
+    },
+    {
+      "type": "dept_focus",
+      "focusId": "supervision"
+    },
+    {
+      "type": "dept_focus",
+      "focusId": "control"
+    },
+    {
+      "type": "cluster"
+    },
+    {
+      "type": "achievement"
+    }
+  ],
+  "assets": {
+    "bgm": "/audio/bgm.mp3",
+    "preload_images": []
+  }
+}
