@@ -134,3 +134,35 @@ export const updateCampaignSchema = z.object({
     .optional(),
   departments: z.array(campaignDepartmentSchema).optional(),
 });
+
+export const userIdParamsSchema = z.object({
+  id: z.string().uuid(),
+});
+
+export const createUserSchema = z.object({
+  username: z.string().min(2).max(100),
+  password: z.string().min(6).max(200),
+  email: z
+    .union([z.string().email(), z.literal(''), z.null()])
+    .optional()
+    .transform((v) => (v === '' ? null : v)),
+  role: z.enum(['admin', 'api_client']).optional(),
+});
+
+export const updateUserSchema = z.object({
+  email: z
+    .union([z.string().email(), z.literal(''), z.null()])
+    .optional()
+    .transform((v) => (v === '' ? null : v)),
+  role: z.enum(['admin', 'api_client']).optional(),
+  is_active: z.boolean().optional(),
+});
+
+export const resetUserPasswordSchema = z.object({
+  password: z.string().min(6).max(200),
+});
+
+export const changePasswordSchema = z.object({
+  current_password: z.string().min(6).max(200),
+  new_password: z.string().min(6).max(200),
+});

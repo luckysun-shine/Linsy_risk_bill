@@ -1,9 +1,25 @@
 <template>
   <div v-if="model" class="bill-editor">
-    <el-tabs v-model="activeTab" type="border-card">
-      <el-tab-pane label="公司公共信息" name="base">
+    <aside class="nav">
+      <div class="nav-title">按 H5 分屏编辑</div>
+      <button
+        v-for="item in navItems"
+        :key="item.key"
+        type="button"
+        class="nav-item"
+        :class="{ active: activeTab === item.key }"
+        @click="activeTab = item.key"
+      >
+        <span class="nav-label">{{ item.label }}</span>
+        <span class="nav-sub">{{ item.sub }}</span>
+      </button>
+    </aside>
+
+    <section class="panel">
+      <div v-show="activeTab === 'base'" class="pane">
+        <h3 class="pane-title">公司公共信息</h3>
         <p class="hint">
-          这里是全公司统一内容（CEO / 各部门账单共用）。发布时各链接仅在「是否含部门聚焦」上不同；部门聚焦数据请到下方部门列表中分别配置。
+          全公司统一内容。部门差异仅在下方「接收部门」中的「部门聚焦」配置。
         </p>
         <el-form label-width="110px" class="editor-block">
           <el-form-item label="公司">
@@ -39,9 +55,10 @@
             <el-input v-model="bgm" placeholder="/audio/bgm.mp3" />
           </el-form-item>
         </el-form>
-      </el-tab-pane>
+      </div>
 
-      <el-tab-pane label="封面" name="cover">
+      <div v-show="activeTab === 'cover'" class="pane">
+        <h3 class="pane-title">封面 Cover</h3>
         <el-form label-width="100px">
           <el-form-item label="Headline">
             <el-input v-model="cover.headline" />
@@ -56,18 +73,18 @@
             <el-input v-model="cover.greeting" />
           </el-form-item>
         </el-form>
-      </el-tab-pane>
+      </div>
 
-      <el-tab-pane label="风险分类" name="risk_pie">
-        <h3 class="section-title">风险分类占比</h3>
+      <div v-show="activeTab === 'risk_pie'" class="pane">
+        <h3 class="pane-title">风险分类 Risk Pie</h3>
+        <h4 class="section-title">风险分类占比</h4>
         <CategoryTable v-model="model.details_data.risk_categories" />
-        <h3 class="section-title" style="margin-top: 20px">整改分类占比</h3>
-        <CategoryTable
-          v-model="rectificationCategories"
-        />
-      </el-tab-pane>
+        <h4 class="section-title" style="margin-top: 20px">整改分类占比</h4>
+        <CategoryTable v-model="rectificationCategories" />
+      </div>
 
-      <el-tab-pane label="整改概况" name="rectification">
+      <div v-show="activeTab === 'rectification'" class="pane">
+        <h3 class="pane-title">整改概况 Rectification</h3>
         <template v-if="model.details_data.rectification_overview">
           <el-form label-width="120px">
             <el-form-item label="平均关闭率说明">
@@ -87,7 +104,7 @@
             title="历史整改"
           />
           <div class="editor-block">
-            <h3 class="section-title">警示摘要</h3>
+            <h4 class="section-title">警示摘要</h4>
             <el-form label-width="120px">
               <el-form-item label="年份">
                 <el-input-number
@@ -137,9 +154,10 @@
             </el-form>
           </div>
         </template>
-      </el-tab-pane>
+      </div>
 
-      <el-tab-pane label="合规数读" name="stats">
+      <div v-show="activeTab === 'stats'" class="pane">
+        <h3 class="pane-title">合规数读 Stats</h3>
         <template v-if="model.details_data.compliance_education">
           <el-form label-width="80px">
             <el-form-item label="引言">
@@ -184,9 +202,10 @@
             添加成果条目
           </el-button>
         </template>
-      </el-tab-pane>
+      </div>
 
-      <el-tab-pane label="高风险阻击战" name="milestone">
+      <div v-show="activeTab === 'milestone'" class="pane">
+        <h3 class="pane-title">高风险阻击战 Milestone</h3>
         <template v-if="model.details_data.dept_battle_report">
           <el-form label-width="90px">
             <el-form-item label="副标题">
@@ -216,7 +235,7 @@
             <el-button size="small" @click="dept.lines.push([{ text: '' }])">添加战绩行</el-button>
           </div>
           <div class="editor-block" v-if="model.details_data.dept_battle_report.tip">
-            <h3 class="section-title">风控提示</h3>
+            <h4 class="section-title">风控提示</h4>
             <el-form label-width="80px">
               <el-form-item label="标题">
                 <el-input v-model="model.details_data.dept_battle_report.tip.title" />
@@ -225,11 +244,12 @@
             <MetricPartsEditor v-model="model.details_data.dept_battle_report.tip.body" />
           </div>
         </template>
-      </el-tab-pane>
+      </div>
 
-      <el-tab-pane label="重大风险" name="cluster">
+      <div v-show="activeTab === 'cluster'" class="pane">
+        <h3 class="pane-title">重大风险 Cluster</h3>
         <template v-if="model.details_data.risk_report">
-          <h3 class="section-title">标题句</h3>
+          <h4 class="section-title">标题句</h4>
           <MetricPartsEditor v-model="model.details_data.risk_report.headline" show-strong />
           <div
             v-for="(para, pIdx) in model.details_data.risk_report.paragraphs"
@@ -263,7 +283,7 @@
             <MetricPartsEditor v-model="model.details_data.risk_report.praise.body" />
           </div>
           <div class="editor-block">
-            <h3 class="section-title">收尾寄语</h3>
+            <h4 class="section-title">收尾寄语</h4>
             <div
               v-for="(_line, idx) in model.details_data.risk_report.closing"
               :key="idx"
@@ -287,9 +307,10 @@
             </el-button>
           </div>
         </template>
-      </el-tab-pane>
+      </div>
 
-      <el-tab-pane label="分类宣导" name="achievement">
+      <div v-show="activeTab === 'achievement'" class="pane">
+        <h3 class="pane-title">风控分类宣导 Achievement</h3>
         <template v-if="tree">
           <el-form label-width="100px">
             <el-form-item label="根标题">
@@ -337,22 +358,18 @@
             <TreeNodeEditor v-model="tree.risk.terminal" label="末端节点" />
           </div>
         </template>
-      </el-tab-pane>
+      </div>
 
-      <el-tab-pane label="分屏编排" name="pages">
+      <div v-show="activeTab === 'pages'" class="pane">
+        <h3 class="pane-title">分屏编排</h3>
         <p class="hint">
-          公司公共分屏顺序。部门聚焦页会在发布时按各部门配置自动插入（CEO 等不含聚焦的部门不会插入）。
+          公司公共分屏顺序。部门聚焦页会在发布时按各部门配置自动插入。
         </p>
         <el-table :data="model.page_config" style="width: 100%">
           <el-table-column label="类型" width="180">
             <template #default="{ row }">
               <el-select v-model="row.type" style="width: 160px">
-                <el-option
-                  v-for="t in pageTypes"
-                  :key="t"
-                  :label="t"
-                  :value="t"
-                />
+                <el-option v-for="t in pageTypes" :key="t" :label="t" :value="t" />
               </el-select>
             </template>
           </el-table-column>
@@ -366,7 +383,7 @@
               <el-input
                 v-else-if="row.type === 'cover'"
                 v-model="row.headline"
-                placeholder="封面 headline（可在封面页编辑）"
+                placeholder="封面 headline"
                 disabled
               />
               <span v-else class="muted">—</span>
@@ -391,18 +408,14 @@
         <el-button style="margin-top: 12px" @click="model.page_config.push({ type: 'stats' })">
           添加分屏
         </el-button>
-      </el-tab-pane>
+      </div>
 
-      <el-tab-pane label="高级 JSON" name="json">
+      <div v-show="activeTab === 'json'" class="pane">
+        <h3 class="pane-title">高级 JSON</h3>
         <p class="hint">可直接编辑完整 payload；失焦后写回表单。请保持 JSON 合法。</p>
-        <el-input
-          v-model="jsonText"
-          type="textarea"
-          :rows="28"
-          @blur="applyJson"
-        />
-      </el-tab-pane>
-    </el-tabs>
+        <el-input v-model="jsonText" type="textarea" :rows="28" @blur="applyJson" />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -421,8 +434,21 @@ import RectSectionEditor from './RectSectionEditor.vue'
 import TreeNodeEditor from './TreeNodeEditor.vue'
 
 const model = defineModel<BillData>({ required: true })
-const activeTab = ref('base')
+const activeTab = ref('cover')
 const jsonText = ref('')
+
+const navItems = [
+  { key: 'cover', label: '封面', sub: 'Cover' },
+  { key: 'risk_pie', label: '风险分类', sub: 'Risk Pie' },
+  { key: 'rectification', label: '整改概况', sub: 'Rectification' },
+  { key: 'stats', label: '合规数读', sub: 'Stats' },
+  { key: 'milestone', label: '高风险阻击战', sub: 'Milestone' },
+  { key: 'cluster', label: '重大风险', sub: 'Cluster' },
+  { key: 'achievement', label: '分类宣导', sub: 'Achievement' },
+  { key: 'base', label: '公共摘要', sub: 'Summary' },
+  { key: 'pages', label: '分屏编排', sub: 'Pages' },
+  { key: 'json', label: '高级 JSON', sub: 'Debug' },
+]
 
 const pageTypes: PageType[] = [
   'cover',
@@ -494,11 +520,99 @@ function movePage(index: number, delta: number) {
 </script>
 
 <style scoped>
+.bill-editor {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  min-height: 560px;
+  border: 1px solid #e2eceb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.nav {
+  background: #f4fafa;
+  border-right: 1px solid #e2eceb;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-title {
+  font-size: 12px;
+  color: #6a8080;
+  padding: 4px 10px 10px;
+  font-weight: 700;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  text-align: left;
+  color: #234;
+  transition: background 0.15s ease;
+}
+
+.nav-item:hover {
+  background: rgba(20, 143, 136, 0.08);
+}
+
+.nav-item.active {
+  background: rgba(20, 143, 136, 0.16);
+  color: #0a5c58;
+}
+
+.nav-label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.nav-sub {
+  font-size: 11px;
+  color: #7a9090;
+}
+
+.panel {
+  padding: 16px 18px 20px;
+  overflow: auto;
+  max-height: 72vh;
+}
+
+.pane-title {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0a3d42;
+}
+
 .hint {
   color: #667;
   font-size: 13px;
   margin: 0 0 12px;
 }
+
+.section-title {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.editor-block {
+  margin: 14px 0;
+  padding: 12px;
+  background: #f7fbfb;
+  border-radius: 10px;
+}
+
 .block-head,
 .para-head,
 .closing-row {
@@ -507,13 +621,28 @@ function movePage(index: number, delta: number) {
   gap: 8px;
   margin-bottom: 8px;
 }
+
 .para {
   margin: 12px 0;
   padding: 12px;
   background: #f7fbfb;
   border-radius: 8px;
 }
+
 .muted {
   color: #99a;
+}
+
+@media (max-width: 900px) {
+  .bill-editor {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-right: none;
+    border-bottom: 1px solid #e2eceb;
+  }
 }
 </style>

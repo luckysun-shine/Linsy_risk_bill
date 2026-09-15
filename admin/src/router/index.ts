@@ -24,6 +24,11 @@ const router = createRouter({
           name: 'campaign-edit',
           component: () => import('@/views/CampaignEditView.vue'),
         },
+        {
+          path: 'users',
+          name: 'users',
+          component: () => import('@/views/UsersView.vue'),
+        },
       ],
     },
   ],

@@ -9,19 +9,27 @@
         </el-tag>
       </div>
       <div class="actions">
-        <el-button @click="downloadImportTemplate">下载导入模板</el-button>
+        <el-button type="primary" plain @click="downloadImportTemplate">
+          ① 下载 Excel 模板
+        </el-button>
         <el-upload
           :show-file-list="false"
           accept=".xlsx,.xls"
           :before-upload="onImportExcel"
         >
-          <el-button>上传表格填报</el-button>
+          <el-button type="primary">② 上传表格填报</el-button>
         </el-upload>
         <el-button :loading="saving" @click="onSave">保存</el-button>
-        <el-button type="primary" :loading="publishing" @click="onPublish">
+        <el-button type="success" :loading="publishing" @click="onPublish">
           保存并发布部门链接
         </el-button>
       </div>
+    </div>
+
+    <div class="page-card workflow-banner">
+      <b>推荐流程（Excel 为主）</b>
+      下载模板 → 按 Sheet 填报各分屏数据 → 上传预览变更 → 左侧按 H5 分屏微调 → 保存并发布。
+      文案高亮请用 <code>[[数字]]</code> 标记。
     </div>
 
     <div class="page-card" style="margin-top: 16px">
@@ -34,13 +42,15 @@
         </el-form-item>
       </el-form>
       <p class="hint">
-        公司公共内容对所有部门链接一致；仅「部门聚焦」三页因部门而异。CEO
-        等可不含聚焦页。
+        公司公共内容对所有部门链接一致；仅「部门聚焦」三页因部门而异。
       </p>
     </div>
 
     <div class="page-card" style="margin-top: 16px" v-if="payload">
-      <h3 class="section-title">公司公共内容（全员一致）</h3>
+      <div class="section-head">
+        <h3 class="section-title" style="margin: 0">公司公共内容（按分屏微调）</h3>
+        <el-tag size="small" type="info">方案 A：分屏导航</el-tag>
+      </div>
       <BillContentEditor v-model="payload" />
     </div>
 
@@ -51,7 +61,6 @@
       </div>
       <p class="hint">
         例如：CEO（不含部门聚焦）、财经中心 / 产品中心（各自配置聚焦三页数据）。
-        <b>仅「部门聚焦」会不同</b>，封面到阻击战等公司公共页本来就相同。
         修改后需点「保存并发布部门链接」才会更新已生成的链接内容。
       </p>
       <el-table :data="departments" style="width: 100%">
@@ -137,6 +146,27 @@
       </template>
     </el-dialog>
 
+    <el-dialog v-model="importPreviewVisible" title="Excel 导入预览" width="560px">
+      <p class="hint">确认后写入当前表单（不会自动发布）。</p>
+      <el-alert
+        v-if="importSummary"
+        type="success"
+        :closable="false"
+        title="识别到以下变更"
+        style="margin-bottom: 12px"
+      />
+      <ul class="import-list">
+        <li v-for="(item, idx) in importSummary?.changes || []" :key="idx">{{ item }}</li>
+      </ul>
+      <p class="hint" v-if="importSummary">
+        工作簿 Sheet：{{ importSummary.sheets.join('、') }}
+      </p>
+      <template #footer>
+        <el-button @click="importPreviewVisible = false">取消</el-button>
+        <el-button type="primary" @click="confirmImport">确认导入到表单</el-button>
+      </template>
+    </el-dialog>
+
     <el-dialog v-model="publishDialog" title="发布结果" width="720px">
       <el-table :data="publishResults" style="width: 100%">
         <el-table-column prop="dept_name" label="部门" width="140" />
@@ -164,6 +194,7 @@ import {
   applySharedPatch,
   downloadImportTemplate,
   parseImportExcel,
+  type ImportPreviewSummary,
 } from '@/utils/excelImport'
 
 const route = useRoute()
@@ -181,6 +212,11 @@ const focusTarget = ref<CampaignDepartment | null>(null)
 const focusReports = ref<DeptFocusReport[] | null>(null)
 const publishDialog = ref(false)
 const publishResults = ref<Array<{ dept_name: string; url: string }>>([])
+
+const importPreviewVisible = ref(false)
+const importSummary = ref<ImportPreviewSummary | null>(null)
+const pendingSharedPatch = ref<Partial<BillData> | null>(null)
+const pendingDepartments = ref<CampaignDepartment[] | null>(null)
 
 function getOverrides(row: CampaignDepartment) {
   return (row.overrides || {}) as {
@@ -385,16 +421,25 @@ async function onPublish() {
 async function onImportExcel(file: File) {
   if (!payload.value) return false
   try {
-    const { sharedPatch, departments: importedDepts } = await parseImportExcel(file)
-    payload.value = applySharedPatch(payload.value, sharedPatch)
-    if (importedDepts.length) {
-      departments.value = importedDepts
-    }
-    ElMessage.success('表格已导入到表单，请检查后保存/发布')
+    const { sharedPatch, departments: importedDepts, summary } = await parseImportExcel(file)
+    pendingSharedPatch.value = sharedPatch
+    pendingDepartments.value = importedDepts
+    importSummary.value = summary
+    importPreviewVisible.value = true
   } catch (error) {
     ElMessage.error(error instanceof Error ? error.message : '表格解析失败')
   }
   return false
+}
+
+function confirmImport() {
+  if (!payload.value || !pendingSharedPatch.value) return
+  payload.value = applySharedPatch(payload.value, pendingSharedPatch.value)
+  if (pendingDepartments.value?.length) {
+    departments.value = pendingDepartments.value
+  }
+  importPreviewVisible.value = false
+  ElMessage.success('已导入到表单，请检查分屏内容后保存/发布')
 }
 
 onMounted(load)
@@ -412,6 +457,25 @@ onMounted(load)
   flex-wrap: wrap;
   gap: 8px;
   justify-content: flex-end;
+}
+.workflow-banner {
+  margin-top: 16px;
+  background: linear-gradient(90deg, #e8f8f6, #fff8e8);
+  color: #234;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.workflow-banner code {
+  background: rgba(10, 92, 88, 0.1);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 .dept-head {
   display: flex;
@@ -431,5 +495,11 @@ onMounted(load)
 }
 .muted {
   color: #99a;
+}
+.import-list {
+  margin: 0;
+  padding-left: 18px;
+  color: #234;
+  line-height: 1.7;
 }
 </style>

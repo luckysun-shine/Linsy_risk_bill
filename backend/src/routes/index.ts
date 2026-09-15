@@ -3,6 +3,7 @@ import * as authController from '../controllers/authController';
 import * as billController from '../controllers/billController';
 import * as adminController from '../controllers/adminController';
 import * as campaignController from '../controllers/campaignController';
+import * as userController from '../controllers/userController';
 import { requireAuth, requireAdmin } from '../middleware/auth';
 import { requireServiceAuth } from '../middleware/serviceAuth';
 import { validateBody, validateQuery, validateParams } from '../middleware/validate';
@@ -21,6 +22,11 @@ import {
   campaignIdParamsSchema,
   createCampaignSchema,
   updateCampaignSchema,
+  userIdParamsSchema,
+  createUserSchema,
+  updateUserSchema,
+  resetUserPasswordSchema,
+  changePasswordSchema,
 } from '../schemas';
 
 const router = Router();
@@ -31,6 +37,12 @@ router.get('/health', (_req, res) => {
 
 router.post('/auth/login', validateBody(loginSchema), authController.login);
 router.get('/auth/me', requireAuth, authController.me);
+router.put(
+  '/auth/password',
+  requireAuth,
+  validateBody(changePasswordSchema),
+  userController.changePassword
+);
 
 router.get('/bill/data', billController.getBillData);
 router.get(
@@ -109,6 +121,29 @@ admin.post(
   requireAdmin,
   validateParams(campaignIdParamsSchema),
   campaignController.publish
+);
+
+admin.get('/users', requireAdmin, userController.listUsers);
+admin.post('/users', requireAdmin, validateBody(createUserSchema), userController.createUser);
+admin.put(
+  '/users/:id',
+  requireAdmin,
+  validateParams(userIdParamsSchema),
+  validateBody(updateUserSchema),
+  userController.updateUser
+);
+admin.put(
+  '/users/:id/password',
+  requireAdmin,
+  validateParams(userIdParamsSchema),
+  validateBody(resetUserPasswordSchema),
+  userController.resetPassword
+);
+admin.delete(
+  '/users/:id',
+  requireAdmin,
+  validateParams(userIdParamsSchema),
+  userController.deleteUser
 );
 
 admin.post('/api-keys', requireAdmin, validateBody(createApiKeySchema), adminController.createKey);
