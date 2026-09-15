@@ -10,7 +10,7 @@ import { mockDeptFocusReports } from '@/data/deptFocusData'
 
 
 
-/** 薄荷星际主题色板（对齐设计系统 chart 色阶） */
+/** 深空追光主题色板（对齐设计系统 chart 色阶） */
 const RISK_COLORS: Record<string, string> = {
   渠道管理: '#20B2AA',
   供应链管理: '#FFD700',

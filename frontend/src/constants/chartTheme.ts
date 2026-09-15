@@ -1,4 +1,4 @@
-/** ECharts 与数据可视化 — 星际薄荷主题色 */
+/** ECharts 与数据可视化 — 深空追光主题色 */
 export const CHART_THEME = {
   axis: '#0a5c58',
   axisMuted: 'rgba(10, 92, 88, 0.28)',
