@@ -218,7 +218,7 @@ function sparkleStyle(spark: CosmicJourneySparkle) {
   position: absolute;
   left: -4%;
   width: 108%;
-  opacity: 0.72;
+  opacity: 0.18;
 
   &--top {
     top: -2%;
@@ -233,7 +233,7 @@ function sparkleStyle(spark: CosmicJourneySparkle) {
 
 .cosmic-journey--ambient {
   .ribbon {
-    opacity: 0.42;
+    opacity: 0.1;
 
     &--top {
       height: 14%;
@@ -307,7 +307,7 @@ function sparkleStyle(spark: CosmicJourneySparkle) {
   top: 18%;
   width: min(42vw, 180px);
   height: min(42vw, 180px);
-  opacity: 0.55;
+  opacity: 0.32;
 }
 
 .portal-ring {

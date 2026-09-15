@@ -12,15 +12,12 @@
       <p v-if="error" class="error">{{ error }}</p>
       <p v-else class="hint">正在为你准备专属账单…</p>
     </div>
-
-    <img :src="IP_ASSETS.home" class="ip-char" alt="" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useBillStore } from '@/stores/billStore'
-import { IP_ASSETS } from '@/constants/ipAssets'
 import PageRibbon from '@/components/common/PageRibbon.vue'
 import BillSkyBackground from '@/components/common/BillSkyBackground.vue'
 

@@ -2,39 +2,41 @@
   <div ref="rootRef" class="slide-cover">
     <BillSkyBackground variant="cover" :animated="coverAnimated" />
 
-    <div class="cover-deco" aria-hidden="true">
-      <GlassLampDeco
-        class="cover-deco__lamp"
-        size="lg"
-        :animated="coverAnimated"
-      />
-      <SoftGlowStar
-        class="cover-deco__star cover-deco__star--a"
-        variant="gold"
-        :animated="coverAnimated"
-      />
-      <SoftGlowStar
-        class="cover-deco__star cover-deco__star--b"
-        variant="cyan"
-        :animated="coverAnimated"
-      />
-    </div>
-
     <div class="content">
-      <div class="brand">LINSY 林氏</div>
+      <!-- 顶部品牌 -->
+      <div class="top-bar">
+        <div class="brand">LINSY 林氏</div>
+      </div>
 
-      <div class="headline-ribbon">
+      <!-- 顶部核心主题标语 -->
+      <div class="headline-tag">
         <span>{{ headline }}</span>
       </div>
 
       <div class="title-block">
-        <h1 class="title">{{ titleText }}</h1>
-        <h2 class="subtitle">{{ subtitleText }}</h2>
+        <h1 class="main-title">做自己的<br />追光者！</h1>
+        <div class="shooting-star-line" aria-hidden="true" />
       </div>
 
-      <div class="cta-area">
-        <img src="@/assets/images/char-home.png" class="char-img" alt="" />
-        <button type="button" class="start-btn" @click.stop.prevent="handleStart">立刻开启</button>
+      <div class="subtitle-block" v-if="subtitleText">
+        <p class="subtitle-text">{{ titleText }} · {{ subtitleText }}</p>
+      </div>
+
+      <!-- 底部开启行动区 -->
+      <div class="bottom-action">
+        <button
+          type="button"
+          class="start-btn"
+          @click.stop.prevent="handleStart"
+        >
+          立刻开启
+        </button>
+      </div>
+
+      <!-- 底部与海报一致的品质小字 -->
+      <div class="footer-bar">
+        <span class="footer-eng">WIN IN INTEGRITY</span>
+        <span class="footer-cn">{{ displayYear }} 林氏廉洁月</span>
       </div>
     </div>
   </div>
@@ -47,14 +49,11 @@ import { useBillStore } from '@/stores/billStore'
 import { useIsActiveAnimation } from '@/composables/useIsActiveAnimation'
 import { useBillGoNext, useBillSlide } from '@/composables/useBillSlide'
 import BillSkyBackground from '@/components/common/BillSkyBackground.vue'
-import GlassLampDeco from '@/components/common/GlassLampDeco.vue'
-import SoftGlowStar from '@/components/common/SoftGlowStar.vue'
 
 const props = defineProps<SlideProps>()
 
 const { isActive } = useBillSlide(props.slideIndex)
 const goNext = useBillGoNext()
-/** 首页常驻星际穿梭动效（流星、光轨等） */
 const coverAnimated = computed(() => isActive.value ?? true)
 const rootRef = ref<HTMLElement | null>(null)
 
@@ -74,6 +73,10 @@ const subtitleText = computed(
     (page.value && 'subtitle' in page.value && page.value.subtitle) || '沿途波澜皆景'
 )
 
+const displayYear = computed(() => {
+  return store.billData?.user.year || new Date().getFullYear()
+})
+
 function handleStart() {
   void goNext()
 }
@@ -81,25 +84,52 @@ function handleStart() {
 useIsActiveAnimation(
   isActive,
   (tl) => {
-  const scope = rootRef.value
-  if (!scope) return
-  tl.from(scope.querySelector('.headline-ribbon'), { y: -30, opacity: 0, duration: 0.6 })
-  tl.from(
-    scope.querySelector('.cover-deco__lamp'),
-    { y: 18, opacity: 0, scale: 0.88, duration: 0.75, ease: 'power2.out' },
-    '-=0.15'
-  )
-  tl.from(scope.querySelector('.title-block'), { y: 24, opacity: 0, duration: 0.8 }, '-=0.1')
-  tl.from(
-    scope.querySelector('.char-img'),
-    { y: 40, opacity: 0, duration: 0.8, ease: 'power2.out' },
-    '-=0.4'
-  )
-  tl.from(
-    scope.querySelector('.start-btn'),
-    { scale: 0.85, opacity: 0, duration: 0.6, ease: 'back.out(1.5)' },
-    '-=0.35'
-  )
+    const scope = rootRef.value
+    if (!scope) return
+    tl.from(scope.querySelector('.headline-tag'), {
+      y: -20,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+    })
+    tl.from(
+      scope.querySelector('.title-block'),
+      {
+        y: 28,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: 'power2.out',
+      },
+      '-=0.2'
+    )
+    tl.from(
+      scope.querySelector('.subtitle-block'),
+      {
+        opacity: 0,
+        y: 14,
+        duration: 0.6,
+      },
+      '-=0.4'
+    )
+    tl.from(
+      scope.querySelector('.start-btn'),
+      {
+        scale: 0.9,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'back.out(1.4)',
+      },
+      '-=0.3'
+    )
+    tl.from(
+      scope.querySelector('.footer-bar'),
+      {
+        opacity: 0,
+        duration: 0.6,
+      },
+      '-=0.3'
+    )
   },
   { resetOnLeave: false }
 )
@@ -115,249 +145,191 @@ useIsActiveAnimation(
   overflow: hidden;
 }
 
-.cover-deco {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.cover-deco__lamp {
-  position: absolute;
-  top: 38%;
-  right: 8%;
-  left: auto;
-  opacity: 0.92;
-  transform: translateY(-50%);
-  z-index: 2;
-}
-
-.cover-deco__star {
-  position: absolute;
-}
-
-.cover-deco__star--a {
-  top: 28%;
-  right: 22%;
-  left: auto;
-  width: 38px;
-  height: 38px;
-  opacity: 0.88;
-  animation-delay: 0.6s;
-}
-
-.cover-deco__star--b {
-  top: 52%;
-  right: 28%;
-  left: auto;
-  width: 24px;
-  height: 24px;
-  opacity: 0.7;
-  animation-delay: 1.2s;
-}
-
 .content {
   position: relative;
   z-index: 3;
   width: 100%;
   height: 100%;
-  padding: max(24px, env(safe-area-inset-top)) 20px max(30px, env(safe-area-inset-bottom));
+  padding: max(20px, env(safe-area-inset-top)) 22px max(24px, env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+}
+
+.top-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
 
 .brand {
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-size: clamp(1rem, 3.8vw, 1.15rem);
+  font-weight: 800;
   color: #fff;
-  letter-spacing: 0.5px;
-  margin-top: 2px;
-  text-shadow: 0 2px 12px rgba(4, 31, 36, 0.35);
+  letter-spacing: 1px;
+  text-shadow:
+    0 2px 10px rgba(2, 18, 38, 0.7),
+    0 0 16px rgba(34, 228, 224, 0.4);
 }
 
-.headline-ribbon {
-  margin-top: 30px;
-  background: linear-gradient(90deg, $bill-mint, $bill-aurora);
-  color: #fff;
-  font-size: clamp(1.45rem, 5.2vw, 1.95rem);
-  font-weight: 800;
-  letter-spacing: 1px;
-  padding: 7px 32px;
-  transform: skew(-8deg);
-  box-shadow:
-    0 6px 0 $bill-ribbon-shadow,
-    0 0 28px rgba(64, 224, 208, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  position: relative;
-  z-index: 4;
+.headline-tag {
+  align-self: flex-start;
+  margin-top: clamp(24px, 5.5vh, 48px);
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: rgba(2, 28, 54, 0.55);
+  border: 1px solid rgba(34, 228, 224, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 
   span {
-    display: inline-block;
-    transform: skew(8deg);
-  }
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    width: 6px;
-    height: 34px;
-    background: rgba(255, 255, 255, 0.35);
-  }
-
-  &::before {
-    left: 8px;
-  }
-
-  &::after {
-    right: 8px;
+    font-size: clamp(0.78rem, 2.8vw, 0.92rem);
+    font-weight: 800;
+    color: $bill-accent-yellow;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.45);
   }
 }
 
 .title-block {
-  margin-top: 24vh;
-  text-align: center;
-  z-index: 4;
-  transform: rotate(-4deg);
-  transform-origin: center center;
+  align-self: flex-start;
+  margin-top: 14px;
+  position: relative;
+  text-align: left;
 }
 
-.title,
-.subtitle {
+.main-title {
   margin: 0;
-  color: #fff;
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: 1px;
-  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: clamp(3.1rem, 13vw, 4.8rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 1.5px;
   font-style: italic;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #fff;
   text-shadow:
-    3px 3px 0 $bill-title-shadow,
-    0 0 24px rgba(64, 224, 208, 0.35);
+    3px 4px 0 $bill-space-deep,
+    0 0 30px rgba(34, 228, 224, 0.45),
+    0 8px 24px rgba(2, 18, 38, 0.6);
 }
 
-.title {
-  font-size: clamp(2.45rem, 9.4vw, 4.4rem);
-}
-
-.subtitle {
-  margin-top: 10px;
-  font-size: clamp(2.3rem, 9vw, 4rem);
-}
-
-.cta-area {
+.shooting-star-line {
   position: absolute;
-  left: 50%;
-  bottom: 48px;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 3;
+  left: 2px;
+  bottom: -6px;
+  width: min(220px, 60vw);
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #fff 0%, $bill-accent-yellow 40%, rgba(255, 140, 0, 0) 100%);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
+
+  &::after {
+    content: '★';
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    transform: translateY(-50%) rotate(12deg);
+    font-size: 14px;
+    color: $bill-accent-yellow;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.9);
+  }
 }
 
-.char-img {
-  width: min(186px, 42vw);
-  object-fit: contain;
-  margin-bottom: -10px;
-  transform: translateX(-92px);
-  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.16));
+.subtitle-block {
+  margin-top: 18px;
+  align-self: flex-start;
+}
+
+.subtitle-text {
+  margin: 0;
+  font-size: clamp(0.85rem, 3.2vw, 1.05rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 10px rgba(2, 18, 38, 0.6);
+}
+
+.bottom-action {
+  margin-top: auto;
+  margin-bottom: clamp(24px, 5vh, 44px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .start-btn {
-  min-width: min(340px, 76vw);
+  width: min(280px, 78vw);
   border-radius: 999px;
-  padding: 12px 38px;
-  font-size: clamp(2rem, 6.8vw, 2.55rem);
+  padding: 13px 36px;
+  font-size: clamp(1.35rem, 5.2vw, 1.65rem);
+  font-weight: 900;
+  letter-spacing: 2px;
   line-height: 1;
   cursor: pointer;
-  transition: transform 0.2s ease, filter 0.2s ease;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease;
   font-family: inherit;
   @include bill-cta-button;
 
   &:active {
-    transform: translateY(3px);
+    transform: translateY(3px) scale(0.98);
     box-shadow:
       0 4px 0 $bill-accent-gold-shadow,
-      0 10px 18px rgba(255, 140, 0, 0.28);
+      0 8px 16px rgba(255, 140, 0, 0.3);
+  }
+
+  &:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
   }
 }
 
-@media (max-width: 420px) {
-  .cover-deco__lamp {
-    top: 36%;
-    right: 4%;
-    transform: translateY(-50%) scale(0.82);
-    transform-origin: center right;
-  }
+.footer-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: clamp(0.68rem, 2.4vw, 0.78rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.78);
+  text-shadow: 0 1px 8px rgba(2, 18, 38, 0.8);
+}
 
-  .cover-deco__star--a {
-    width: 30px;
-    height: 30px;
-    right: 18%;
-    top: 26%;
-  }
+.footer-eng {
+  text-transform: uppercase;
+}
 
-  .cover-deco__star--b {
-    width: 18px;
-    height: 18px;
-    right: 24%;
-    top: 50%;
-  }
-
-  .headline-ribbon {
-    margin-top: 24px;
-    padding: 7px 28px;
-    font-size: 1.45rem;
-  }
-
-  .title-block {
-    margin-top: 28vh;
-  }
-
-  .title {
-    font-size: 2.15rem;
-  }
-
-  .subtitle {
-    font-size: 2rem;
-  }
-
-  .char-img {
-    width: 150px;
-    transform: translateX(-58px);
+@media (max-width: 375px) {
+  .main-title {
+    font-size: 2.85rem;
   }
 
   .start-btn {
-    min-width: 248px;
-    font-size: 1.8rem;
+    width: 240px;
+    font-size: 1.25rem;
     padding: 11px 28px;
   }
 }
 
-@media (min-height: 900px) {
-  .title-block {
-    margin-top: 27vh;
+@media (max-height: 700px) {
+  .headline-tag {
+    margin-top: 16px;
   }
 
-  .cta-area {
-    bottom: 64px;
+  .main-title {
+    font-size: 2.65rem;
+  }
+
+  .bottom-action {
+    margin-bottom: 16px;
   }
 }
 
-@media (max-height: 700px) {
-  .title-block {
-    margin-top: 18vh;
-  }
-
-  .cta-area {
-    bottom: 30px;
-  }
-
+@media (prefers-reduced-motion: reduce) {
   .start-btn {
-    font-size: 1.65rem;
+    transition: none;
   }
 }
 </style>

@@ -1,16 +1,19 @@
 <template>
   <div class="slide-shell" :class="[`overlay-${overlay}`]">
+    <!-- 高清原图底图层 -->
     <BillSkyBackground
       :variant="resolvedVariant"
-      :show-deco="showDeco"
+      :show-deco="false"
       :animated="animated"
     />
+
     <div v-if="overlay !== 'none'" class="slide-shell__tint" aria-hidden="true" />
 
     <div class="slide-shell__content">
       <slot />
     </div>
 
+    <!-- 仅当强制指定外部角色且非底图自带角色时显示 -->
     <img
       v-if="charSrc"
       :src="charSrc"
@@ -23,7 +26,6 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { IP_ASSETS, type IpAssetKey, type IpPosition } from '@/constants/ipAssets'
 import {
   resolveSkyVariant,
   type SkyBgVariant,
@@ -33,20 +35,18 @@ import BillSkyBackground from '@/components/common/BillSkyBackground.vue'
 
 const props = withDefaults(
   defineProps<{
-    character?: IpAssetKey | 'none'
-    charPosition?: IpPosition
+    character?: string
+    charPosition?: 'bottom-left' | 'bottom-right' | 'bottom-center' | 'beside-card'
     showDeco?: boolean
     overlay?: 'none' | 'light' | 'warm' | 'alert'
-    /** 天空背景变体；不传则根据 pageType 自动匹配 */
     skyVariant?: SkyBgVariant
     pageType?: PageType
-    /** 云朵轻微漂移动画（建议绑定 isActive） */
     animated?: boolean
   }>(),
   {
     character: 'none',
     charPosition: 'bottom-right',
-    showDeco: true,
+    showDeco: false,
     overlay: 'light',
     animated: false,
   }
@@ -56,9 +56,15 @@ const resolvedVariant = computed(() =>
   resolveSkyVariant(props.skyVariant, props.pageType)
 )
 
+/**
+ * 原图已内置高质量3D角色与星灯光轨，无需在前端重复叠加2D小人切图。
+ * 仅当明确传入特定自定义切图URL时才渲染。
+ */
 const charSrc = computed(() => {
-  if (props.character === 'none') return ''
-  return IP_ASSETS[props.character]
+  if (!props.character || props.character === 'none' || ['home', 'detail1', 'detail2'].includes(props.character)) {
+    return ''
+  }
+  return props.character
 })
 </script>
 
@@ -79,28 +85,27 @@ const charSrc = computed(() => {
   z-index: 1;
 }
 
-/* 内容区薄层：与 BillSkyBackground 的 wash 叠加，强化卡片可读性 */
 .overlay-light .slide-shell__tint {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.06) 0%,
-    rgba(64, 224, 208, 0.08) 100%
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(2, 18, 38, 0.18) 0%,
+    transparent 75%
   );
 }
 
 .overlay-warm .slide-shell__tint {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 215, 0, 0.1) 0%,
-    rgba(255, 255, 255, 0.08) 100%
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 215, 0, 0.04) 0%,
+    rgba(2, 18, 38, 0.15) 75%
   );
 }
 
 .overlay-alert .slide-shell__tint {
-  background: linear-gradient(
-    180deg,
+  background: radial-gradient(
+    circle at 30% 30%,
     rgba(255, 80, 80, 0.05) 0%,
-    rgba(255, 255, 255, 0.08) 100%
+    rgba(2, 18, 38, 0.18) 75%
   );
 }
 
@@ -114,7 +119,7 @@ const charSrc = computed(() => {
   isolation: isolate;
   width: 100%;
   height: 100%;
-  padding: max(20px, env(safe-area-inset-top)) 16px max(88px, env(safe-area-inset-bottom));
+  padding: max(16px, env(safe-area-inset-top)) 16px max(78px, env(safe-area-inset-bottom));
   box-sizing: border-box;
 }
 
@@ -123,7 +128,9 @@ const charSrc = computed(() => {
   z-index: 3;
   pointer-events: none;
   object-fit: contain;
-  filter: drop-shadow(0 8px 14px rgba(4, 31, 36, 0.22));
+  filter:
+    drop-shadow(0 10px 16px rgba(1, 18, 38, 0.4))
+    drop-shadow(0 0 12px rgba(255, 183, 18, 0.12));
   will-change: transform, opacity;
 
   &.bottom-left {

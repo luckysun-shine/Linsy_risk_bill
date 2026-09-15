@@ -1,17 +1,17 @@
-// 林氏风控年度账单 — 星际薄荷极光主题
-$bill-mint: #20b2aa;
-$bill-aurora: #40e0d0;
-$bill-space-deep: #041f24;
-$bill-space-mid: #0a3d42;
+// 林氏风控年度账单 — 深空追光主题
+$bill-mint: #08bfc1;
+$bill-aurora: #22e4e0;
+$bill-space-deep: #03182f;
+$bill-space-mid: #063c5d;
 
-$bill-brand: #148f88;
-$bill-brand-deep: #0a5c58;
-$bill-brand-dark: #052e2c;
+$bill-brand: #0b8790;
+$bill-brand-deep: #075a69;
+$bill-brand-dark: #042b3c;
 
-$bill-ribbon-start: #20b2aa;
-$bill-ribbon-end: #40e0d0;
-$bill-ribbon-shadow: rgba(4, 31, 36, 0.45);
-$bill-title-shadow: #0a6a62;
+$bill-ribbon-start: #ffbd16;
+$bill-ribbon-end: #ff8617;
+$bill-ribbon-shadow: rgba(3, 24, 47, 0.5);
+$bill-title-shadow: #07546d;
 
 $bill-accent-yellow: #ffd700;
 $bill-accent-orange: #ff8c00;
@@ -24,23 +24,19 @@ $bill-teal: #40e0d0;
 $bill-sky-blue: #5ce8dc;
 $bill-alert-red: #ff6b6b;
 
-$bill-card-glass: rgba(255, 255, 255, 0.22);
-$bill-card-glass-solid: rgba(255, 255, 255, 0.32);
-$bill-card-border: rgba(255, 255, 255, 0.48);
+$bill-card-glass: rgba(244, 255, 252, 0.72);
+$bill-card-glass-solid: rgba(247, 255, 252, 0.86);
+$bill-card-border: rgba(255, 255, 255, 0.68);
 $bill-card-shadow:
-  0 10px 36px rgba(4, 31, 36, 0.2),
-  inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  0 18px 50px rgba(1, 18, 38, 0.28),
+  inset 0 1px 0 rgba(255, 255, 255, 0.72);
 
 @mixin bill-cosmic-background {
   background:
-    radial-gradient(ellipse 70% 55% at 92% 48%, rgba(255, 230, 120, 0.28), transparent 58%),
-    radial-gradient(ellipse 55% 45% at 88% 52%, rgba(64, 224, 208, 0.32), transparent 62%),
-    radial-gradient(ellipse 100% 60% at 50% 110%, rgba(64, 224, 208, 0.22), transparent 55%),
-    radial-gradient(ellipse 90% 55% at 75% 8%, rgba(255, 215, 0, 0.2), transparent 52%),
-    radial-gradient(circle at 15% 85%, rgba(64, 224, 208, 0.38), transparent 42%),
-    radial-gradient(circle at 88% 72%, rgba(255, 140, 0, 0.14), transparent 38%),
-    radial-gradient(circle at 50% 45%, rgba(120, 90, 255, 0.06), transparent 50%),
-    linear-gradient(118deg, $bill-space-deep 0%, $bill-space-mid 38%, $bill-mint 68%, $bill-aurora 100%);
+    radial-gradient(ellipse 70% 50% at 102% 58%, rgba(0, 225, 225, 0.2), transparent 58%),
+    radial-gradient(ellipse 60% 36% at 95% 24%, rgba(255, 151, 10, 0.12), transparent 60%),
+    radial-gradient(circle at 18% 84%, rgba(0, 115, 164, 0.2), transparent 40%),
+    linear-gradient(152deg, #020f23 0%, $bill-space-deep 42%, $bill-space-mid 100%);
 }
 
 @mixin bill-noise-overlay {
@@ -55,7 +51,7 @@ $bill-card-shadow:
 @mixin bill-glass-card {
   background: $bill-card-glass-solid;
   border: 1px solid $bill-card-border;
-  border-radius: 18px;
+  border-radius: 20px;
   box-shadow: $bill-card-shadow;
   /* 移动端 blur 很贵：默认降到 8px，滑动时还会被 BillView 临时关掉 */
   backdrop-filter: blur(8px);
@@ -68,27 +64,28 @@ $bill-card-shadow:
 }
 
 @mixin bill-ribbon {
-  display: inline-block;
-  background: linear-gradient(90deg, $bill-ribbon-start, $bill-aurora);
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
   color: #fff;
-  font-weight: 800;
-  padding: 7px 28px;
-  transform: skew(-8deg);
-  box-shadow:
-    0 6px 0 $bill-ribbon-shadow,
-    0 0 24px rgba(64, 224, 208, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-weight: 900;
+  font-style: italic;
+  padding: 4px 18px 12px;
+  transform: rotate(-2deg);
+  text-shadow:
+    2px 3px 0 $bill-title-shadow,
+    0 0 20px rgba(34, 228, 224, 0.24);
 
   span,
   &::before {
-    transform: skew(8deg);
+    transform: none;
   }
 }
 
 @mixin bill-section-title {
   margin: 0;
   color: #fff;
-  font-weight: 800;
+  font-weight: 900;
   font-style: italic;
   line-height: 1.1;
   text-shadow:
@@ -125,7 +122,7 @@ $bill-card-shadow:
   border-radius: 999px;
   color: $bill-brand-dark;
   font-weight: 900;
-  background: linear-gradient(180deg, #ffe566 0%, $bill-accent-yellow 52%, $bill-accent-orange 100%);
+  background: linear-gradient(180deg, #fff078 0%, $bill-accent-yellow 48%, $bill-accent-orange 100%);
   box-shadow:
     0 8px 0 $bill-accent-gold-shadow,
     0 14px 28px rgba(255, 140, 0, 0.35),
