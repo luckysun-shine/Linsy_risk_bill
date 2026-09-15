@@ -195,25 +195,25 @@ defineExpose({ renderChart, scrollRef })
 
 .rect-block {
   flex-shrink: 0;
-  padding: 10px 8px 8px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.62);
+  padding: 12px 10px 10px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.85);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    0 6px 18px rgba(4, 31, 36, 0.06);
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 4px 16px rgba(2, 18, 38, 0.05);
 }
 
 .rect-block__head {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
 }
 
 .rect-block__title {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
   font-weight: 800;
   color: $bill-brand-dark;
   letter-spacing: 0.3px;
@@ -221,30 +221,30 @@ defineExpose({ renderChart, scrollRef })
 
 .rect-block__avg {
   margin-left: auto;
-  padding: 2px 8px;
+  padding: 2px 10px;
   border-radius: 999px;
-  font-size: 0.64rem;
-  font-weight: 700;
-  color: #9a6b00;
-  background: rgba(255, 215, 0, 0.2);
-  border: 1px solid rgba(255, 215, 0, 0.35);
+  font-size: var(--text-2xs);
+  font-weight: 800;
+  color: #8c5d00;
+  background: rgba(255, 215, 0, 0.22);
+  border: 1px solid rgba(255, 215, 0, 0.45);
   white-space: nowrap;
 }
 
 .rect-block__legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 10px;
-  margin-bottom: 6px;
+  gap: 6px 12px;
+  margin-bottom: var(--space-1);
 }
 
 .leg {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 0.62rem;
+  font-size: var(--text-2xs);
   font-weight: 700;
-  color: rgba(5, 46, 44, 0.75);
+  color: #064057;
 }
 
 .dot {
@@ -254,27 +254,19 @@ defineExpose({ renderChart, scrollRef })
   flex-shrink: 0;
 }
 
-.dot-problem {
-  background: #ffd700;
-}
-
-.dot-should {
-  background: #0a5c58;
-}
-
-.dot-closed {
-  background: #40e0d0;
-}
+.dot-problem { background: #ffb703; }
+.dot-should { background: #0a5c58; }
+.dot-closed { background: #00c4c7; }
 
 .line {
   width: 12px;
   height: 0;
-  border-top: 1.5px dashed currentColor;
+  border-top: 2px dashed currentColor;
   flex-shrink: 0;
 }
 
 .line-rate {
-  color: #1a9e96;
+  color: #00a896;
 }
 
 .rect-block__scroll {
@@ -288,7 +280,7 @@ defineExpose({ renderChart, scrollRef })
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(32, 178, 170, 0.35);
+    background: rgba(0, 196, 199, 0.35);
     border-radius: 3px;
   }
 }
@@ -304,20 +296,20 @@ defineExpose({ renderChart, scrollRef })
 .rect-table-wrap {
   display: flex;
   align-items: stretch;
-  margin-top: 4px;
-  border-radius: 10px;
+  margin-top: 6px;
+  border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(32, 178, 170, 0.18);
-  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(0, 196, 199, 0.22);
+  background: rgba(255, 255, 255, 0.65);
 }
 
 .rect-table-labels {
-  flex: 0 0 56px;
-  width: 56px;
-  background: rgba(232, 248, 246, 0.72);
-  border-right: 1px solid rgba(32, 178, 170, 0.2);
+  flex: 0 0 58px;
+  width: 58px;
+  background: rgba(225, 246, 244, 0.85);
+  border-right: 1px solid rgba(0, 196, 199, 0.25);
   z-index: 2;
-  box-shadow: 2px 0 8px rgba(4, 31, 36, 0.05);
+  box-shadow: 2px 0 8px rgba(2, 18, 38, 0.05);
 }
 
 .label-cell {
@@ -325,25 +317,27 @@ defineExpose({ renderChart, scrollRef })
   align-items: center;
   min-height: 28px;
   padding: 0 6px;
-  font-size: 0.62rem;
+  font-size: var(--text-2xs);
   font-weight: 800;
-  color: $bill-brand-deep;
-  border-bottom: 1px solid rgba(10, 77, 100, 0.08);
+  color: #053b4f;
+  border-bottom: 1px solid rgba(10, 77, 100, 0.1);
   box-sizing: border-box;
 
   &--head {
     min-height: 40px;
-    background: rgba(213, 243, 239, 0.85);
+    background: rgba(200, 240, 236, 0.95);
     justify-content: center;
     text-align: center;
+    color: $bill-brand-dark;
   }
 
   &--rate {
     border-bottom: none;
+    color: #08615a;
   }
 
   &:nth-child(odd):not(.label-cell--head) {
-    background: rgba(238, 250, 248, 0.55);
+    background: rgba(234, 250, 248, 0.65);
   }
 }
 
@@ -360,7 +354,7 @@ defineExpose({ renderChart, scrollRef })
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(32, 178, 170, 0.4);
+    background: rgba(0, 196, 199, 0.45);
     border-radius: 4px;
   }
 }
@@ -368,30 +362,31 @@ defineExpose({ renderChart, scrollRef })
 .rect-table {
   border-collapse: collapse;
   table-layout: fixed;
-  font-size: 0.68rem;
-  color: rgba(5, 46, 44, 0.9);
+  font-size: var(--text-xs);
+  color: #042533;
 
   th,
   td {
-    width: 58px;
-    min-width: 58px;
-    max-width: 58px;
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
     border-bottom: 1px solid rgba(10, 77, 100, 0.08);
     padding: 0 2px;
     text-align: center;
     vertical-align: middle;
-    font-weight: 600;
+    font-weight: 700;
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
     box-sizing: border-box;
   }
 
   thead th {
     height: 40px;
-    background: rgba(243, 251, 250, 0.7);
-    border-bottom: 1px solid rgba(32, 178, 170, 0.2);
+    background: rgba(240, 252, 250, 0.85);
+    border-bottom: 1px solid rgba(0, 196, 199, 0.25);
     color: $bill-brand-dark;
-    font-weight: 700;
+    font-weight: 800;
   }
 
   tbody td {
@@ -399,22 +394,23 @@ defineExpose({ renderChart, scrollRef })
   }
 
   tbody tr:nth-child(odd) td {
-    background: rgba(250, 254, 254, 0.45);
+    background: rgba(250, 255, 254, 0.55);
   }
 
   tbody tr:nth-child(even) td {
-    background: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.35);
   }
 
   .col-head__text {
     display: block;
     white-space: pre-line;
     line-height: 1.15;
-    font-size: 0.56rem;
+    font-size: var(--text-2xs);
+    font-weight: 800;
   }
 
   .row-rate td {
-    color: $bill-brand-deep;
+    color: #08615a;
     font-weight: 800;
     border-bottom: none;
   }
@@ -423,10 +419,57 @@ defineExpose({ renderChart, scrollRef })
 .rect-block__hint {
   margin: 6px 0 0;
   text-align: center;
-  font-size: 0.56rem;
-  font-weight: 600;
-  color: rgba(5, 46, 44, 0.42);
-  letter-spacing: 0.2px;
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  color: #07475e;
+  letter-spacing: 0.3px;
+}
+
+.rect-block--compact {
+  padding: 8px 6px 6px;
+
+  .rect-block__title {
+    font-size: 0.86rem;
+  }
+
+  .rect-block__avg {
+    font-size: 0.58rem;
+    padding: 1px 6px;
+  }
+
+  .leg {
+    font-size: 0.56rem;
+  }
+
+  .rect-table-labels {
+    flex-basis: 52px;
+    width: 52px;
+  }
+
+  .label-cell {
+    font-size: 0.56rem;
+    min-height: 26px;
+
+    &--head {
+      min-height: 36px;
+    }
+  }
+
+  .rect-table {
+    font-size: 0.62rem;
+
+    thead th {
+      height: 36px;
+    }
+
+    tbody td {
+      height: 26px;
+    }
+
+    .col-head__text {
+      font-size: 0.5rem;
+    }
+  }
 }
 
 .rect-block--compact {

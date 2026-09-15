@@ -139,7 +139,7 @@ useIsActiveAnimation(
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding-top: 2px;
+  padding-top: var(--space-1);
 }
 
 .bill-frame {
@@ -148,17 +148,17 @@ useIsActiveAnimation(
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8px;
+  margin-top: var(--space-2);
 }
 
 .bill-slot {
   width: min(92%, 360px);
-  height: 26px;
-  background: linear-gradient(180deg, $bill-mint 0%, $bill-brand-deep 100%);
-  border-radius: 16px 16px 4px 4px;
+  height: 24px;
+  background: linear-gradient(180deg, #32e8e2 0%, $bill-mint 35%, $bill-brand-deep 100%);
+  border-radius: 14px 14px 4px 4px;
   box-shadow:
-    inset 0 2px 6px rgba(255, 255, 255, 0.2),
-    0 4px 14px rgba(4, 31, 36, 0.25);
+    inset 0 2px 4px rgba(255, 255, 255, 0.35),
+    0 4px 14px rgba(2, 18, 38, 0.35);
   position: relative;
   z-index: 2;
   flex-shrink: 0;
@@ -170,11 +170,11 @@ useIsActiveAnimation(
   min-height: 0;
   margin-top: -4px;
   @include bill-glass-panel;
-  border-radius: 0 0 18px 18px;
-  padding: 14px 12px 72px;
+  border-radius: 0 0 20px 20px;
+  padding: 16px 14px 72px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-3);
   position: relative;
   z-index: 1;
   overflow-y: auto;
@@ -186,7 +186,7 @@ useIsActiveAnimation(
   padding-top: 0;
 
   .bill-frame {
-    margin-top: 4px;
+    margin-top: var(--space-1);
   }
 
   .bill-slot {
@@ -195,7 +195,7 @@ useIsActiveAnimation(
 
   .bill-paper {
     padding: 10px 8px 56px;
-    gap: 8px;
+    gap: var(--space-2);
   }
 
   .section-head {
@@ -213,12 +213,12 @@ useIsActiveAnimation(
 
   .avg-note {
     margin: 0;
-    font-size: 0.52rem;
-    line-height: 1.35;
+    font-size: var(--text-2xs);
+    line-height: 1.4;
   }
 
   .section-hint {
-    padding: 8px;
+    padding: var(--space-2);
   }
 
   .section-hint h3 {
@@ -227,24 +227,24 @@ useIsActiveAnimation(
   }
 
   .highlight-lines {
-    font-size: 0.58rem;
-    line-height: 1.45;
+    font-size: 0.64rem;
+    line-height: 1.5;
   }
 
   .hint-date {
-    font-size: 0.54rem;
+    font-size: 0.58rem;
   }
 }
 
 .section-head {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
   flex-shrink: 0;
 
   h1 {
     margin: 0;
-    font-size: clamp(1rem, 3.8vw, 1.15rem);
+    font-size: clamp(1.05rem, 4vw, 1.2rem);
     font-weight: 800;
     color: $bill-brand-dark;
     letter-spacing: 0.4px;
@@ -256,7 +256,7 @@ useIsActiveAnimation(
   height: 26px;
   color: $bill-mint;
   flex-shrink: 0;
-  filter: drop-shadow(0 0 6px rgba(64, 224, 208, 0.35));
+  filter: drop-shadow(0 0 6px rgba(0, 196, 199, 0.45));
 
   svg {
     width: 100%;
@@ -269,11 +269,11 @@ useIsActiveAnimation(
   margin: 0;
   display: flex;
   align-items: flex-start;
-  gap: 6px;
-  font-size: clamp(0.58rem, 1.8vw, 0.68rem);
-  line-height: 1.45;
-  color: rgba(5, 46, 44, 0.72);
-  font-weight: 600;
+  gap: var(--space-2);
+  font-size: clamp(0.64rem, 2vw, 0.72rem);
+  line-height: 1.5;
+  color: #083c50;
+  font-weight: 700;
   flex-shrink: 0;
 }
 
@@ -283,30 +283,30 @@ useIsActiveAnimation(
   border-radius: 50%;
   background: $bill-alert-red;
   flex-shrink: 0;
-  margin-top: 4px;
+  margin-top: 5px;
 }
 
 .section-hint {
-  margin-top: 2px;
-  padding: 10px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(10, 77, 100, 0.08);
+  margin-top: var(--space-1);
+  padding: var(--space-3);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(10, 77, 100, 0.1);
   flex-shrink: 0;
 
   h3 {
-    margin: 0 0 6px;
-    font-size: 0.92rem;
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-sm);
     font-weight: 800;
     color: $bill-brand-dark;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-1);
 
     :deep(.tip-icon) {
-      width: 1.05em;
-      height: 1.05em;
-      color: #ff3b6d;
+      width: 1.1em;
+      height: 1.1em;
+      color: $bill-alert-red;
     }
   }
 }
@@ -314,25 +314,25 @@ useIsActiveAnimation(
 .highlight-lines {
   margin: 0;
   width: 100%;
-  font-size: clamp(0.68rem, 2.1vw, 0.78rem);
-  line-height: 1.65;
+  font-size: clamp(0.72rem, 2.2vw, 0.8rem);
+  line-height: 1.75;
   font-weight: 600;
-  color: rgba(5, 46, 44, 0.88);
+  color: #042533;
 }
 
 .hl {
   display: inline;
-  background: linear-gradient(transparent 55%, rgba(58, 233, 255, 0.32) 55%);
+  background: linear-gradient(transparent 55%, rgba(0, 196, 199, 0.28) 55%);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
 
 .hint-date {
-  margin: 8px 0 0;
+  margin: var(--space-2) 0 0;
   text-align: right;
-  font-size: 0.64rem;
-  color: rgba(5, 46, 44, 0.5);
-  font-weight: 600;
+  font-size: var(--text-2xs);
+  color: #094d66;
+  font-weight: 700;
 }
 
 @media (max-width: 380px) {

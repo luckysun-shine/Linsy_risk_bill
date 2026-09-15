@@ -1,51 +1,75 @@
-// 林氏风控年度账单 — 深空追光主题
-$bill-mint: #08bfc1;
-$bill-aurora: #22e4e0;
-$bill-space-deep: #03182f;
-$bill-space-mid: #063c5d;
+// ==========================================
+// 林氏风控年度账单 — UI Design 规范系统
+// 基于 ui-design 技能：Typography / Spacing / Color / Tokens
+// ==========================================
 
-$bill-brand: #0b8790;
-$bill-brand-deep: #075a69;
-$bill-brand-dark: #042b3c;
+// 1. Primitive Tokens (色彩基元)
+$bill-space-deep: #021226;       // 深空午夜蓝
+$bill-space-mid: #06314f;        // 偏冷深蓝
+$bill-space-surface: #0a4066;    // 深色表面
 
-$bill-ribbon-start: #ffbd16;
-$bill-ribbon-end: #ff8617;
-$bill-ribbon-shadow: rgba(3, 24, 47, 0.5);
-$bill-title-shadow: #07546d;
+$bill-mint: #00c4c7;             // 极光青
+$bill-aurora: #22e4e0;           // 极光亮绿青
+$bill-teal: #1a9e96;             // 稳健青绿
+$bill-sky-blue: #4cd8ec;         // 天青亮色
 
-$bill-accent-yellow: #ffd700;
-$bill-accent-orange: #ff8c00;
-$bill-accent-sun: #ffd700;
-$bill-accent-gold: #ff8c00;
-$bill-accent-gold-shadow: #cc7000;
+$bill-brand: #095973;            // 品牌主青
+$bill-brand-deep: #063b4f;       // 品牌深青
+$bill-brand-dark: #032333;       // 品牌高对比文本黑青
 
-$bill-link-blue: #1a9e96;
-$bill-teal: #40e0d0;
-$bill-sky-blue: #5ce8dc;
-$bill-alert-red: #ff6b6b;
+$bill-accent-yellow: #ffd700;    // 能量暖金
+$bill-accent-gold: #ff9d12;      // 晨晖金橙
+$bill-accent-orange: #ff7f0e;    // 动力橙
+$bill-accent-gold-shadow: #cc6c00;
 
-$bill-card-glass: rgba(244, 255, 252, 0.72);
-$bill-card-glass-solid: rgba(247, 255, 252, 0.86);
-$bill-card-border: rgba(255, 255, 255, 0.68);
+$bill-link-blue: #0b7aa8;
+$bill-alert-red: #f04859;
+$bill-alert-green: #2db889;
+
+// 2. Semantic Surfaces & Cards (卡片表面拟态 - 确保 WCAG 对比度)
+$bill-card-glass: rgba(255, 255, 255, 0.88);
+$bill-card-glass-solid: rgba(255, 255, 255, 0.94);
+$bill-card-border: rgba(255, 255, 255, 0.82);
+$bill-card-border-subtle: rgba(10, 77, 100, 0.12);
 $bill-card-shadow:
-  0 18px 50px rgba(1, 18, 38, 0.28),
-  inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  0 14px 40px rgba(2, 18, 38, 0.28),
+  0 2px 6px rgba(2, 18, 38, 0.08),
+  inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+// 3. Spacing Scale (8px 基础网格系统)
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 20px;
+$space-6: 24px;
+$space-8: 32px;
+$space-10: 40px;
+$space-12: 48px;
+
+// 4. Motion Easings (符合快入慢出人机工效学)
+$ease-out-quint: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+$duration-fast: 150ms;
+$duration-normal: 250ms;
+$duration-page: 350ms;
+
+// ==========================================
+// 混入 (Mixins)
+// ==========================================
 
 @mixin bill-cosmic-background {
-  background:
+  background-color: $bill-space-deep;
+  background-image:
     radial-gradient(ellipse 70% 50% at 102% 58%, rgba(0, 225, 225, 0.2), transparent 58%),
-    radial-gradient(ellipse 60% 36% at 95% 24%, rgba(255, 151, 10, 0.12), transparent 60%),
-    radial-gradient(circle at 18% 84%, rgba(0, 115, 164, 0.2), transparent 40%),
-    linear-gradient(152deg, #020f23 0%, $bill-space-deep 42%, $bill-space-mid 100%);
+    radial-gradient(ellipse 60% 36% at 95% 24%, rgba(255, 151, 10, 0.14), transparent 60%),
+    radial-gradient(circle at 18% 84%, rgba(0, 115, 164, 0.24), transparent 40%),
+    linear-gradient(152deg, #020c1a 0%, $bill-space-deep 42%, $bill-space-mid 100%);
 }
 
 @mixin bill-noise-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-}
-
-@mixin bill-sky-background {
-  @include bill-cosmic-background;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
 }
 
 @mixin bill-glass-card {
@@ -53,9 +77,8 @@ $bill-card-shadow:
   border: 1px solid $bill-card-border;
   border-radius: 20px;
   box-shadow: $bill-card-shadow;
-  /* 移动端 blur 很贵：默认降到 8px，滑动时还会被 BillView 临时关掉 */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 @mixin bill-glass-panel {
@@ -66,65 +89,81 @@ $bill-card-shadow:
 @mixin bill-ribbon {
   display: inline-flex;
   align-items: center;
-  background: transparent;
+  justify-content: center;
   color: #fff;
   font-weight: 900;
   font-style: italic;
   padding: 4px 18px 12px;
   transform: rotate(-2deg);
   text-shadow:
-    2px 3px 0 $bill-title-shadow,
-    0 0 20px rgba(34, 228, 224, 0.24);
-
-  span,
-  &::before {
-    transform: none;
-  }
-}
-
-@mixin bill-section-title {
-  margin: 0;
-  color: #fff;
-  font-weight: 900;
-  font-style: italic;
-  line-height: 1.1;
-  text-shadow:
-    2px 2px 0 $bill-title-shadow,
-    0 0 20px rgba(64, 224, 208, 0.45);
+    2px 3px 0 $bill-brand-deep,
+    0 0 24px rgba(34, 228, 224, 0.35);
 }
 
 @mixin bill-body-text {
   color: $bill-brand-deep;
   font-weight: 600;
+  line-height: 1.6;
 }
 
 @mixin bill-body-text-on-dark {
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.94);
   font-weight: 600;
-  text-shadow: 0 1px 8px rgba(4, 31, 36, 0.35);
+  line-height: 1.6;
+  text-shadow: 0 1px 8px rgba(2, 18, 38, 0.5);
 }
 
 @mixin bill-highlight-num {
   color: $bill-accent-yellow;
-  font-weight: 800;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
 }
 
 @mixin bill-accent-num {
   color: $bill-accent-yellow;
-  font-weight: 800;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
   text-shadow:
     0 0 18px rgba(255, 215, 0, 0.45),
     0 4px 14px rgba(255, 140, 0, 0.25);
 }
 
 @mixin bill-cta-button {
-  border: 2px solid rgba(255, 255, 255, 0.55);
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.65);
   border-radius: 999px;
-  color: $bill-brand-dark;
+  color: #0b3447;
   font-weight: 900;
-  background: linear-gradient(180deg, #fff078 0%, $bill-accent-yellow 48%, $bill-accent-orange 100%);
+  background: linear-gradient(180deg, #fff385 0%, $bill-accent-yellow 48%, $bill-accent-gold 100%);
   box-shadow:
-    0 8px 0 $bill-accent-gold-shadow,
-    0 14px 28px rgba(255, 140, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    0 6px 0 $bill-accent-gold-shadow,
+    0 12px 26px rgba(255, 140, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition:
+    transform $duration-fast $ease-out-quint,
+    box-shadow $duration-fast $ease-out-quint,
+    filter $duration-fast ease;
+
+  &:active {
+    transform: translateY(3px) scale(0.98);
+    box-shadow:
+      0 3px 0 $bill-accent-gold-shadow,
+      0 6px 14px rgba(255, 140, 0, 0.28);
+  }
+
+  &:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+  }
 }

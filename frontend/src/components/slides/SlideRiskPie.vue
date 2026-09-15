@@ -435,19 +435,21 @@ useIsActiveAnimation(
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding-top: 2px;
+  padding-top: var(--space-1);
 }
 
 .page-headline {
   margin: 0;
   text-align: center;
-  font-size: clamp(1.05rem, 4.2vw, 1.35rem);
+  font-size: clamp(1.1rem, 4.4vw, 1.35rem);
   font-weight: 800;
   color: #fff;
-  letter-spacing: 0.5px;
-  line-height: 1.35;
+  letter-spacing: 0.8px;
+  line-height: 1.3;
   flex-shrink: 0;
-  text-shadow: 0 2px 12px rgba(4, 31, 36, 0.35);
+  text-shadow:
+    0 2px 10px rgba(2, 18, 38, 0.7),
+    0 0 16px rgba(34, 228, 224, 0.35);
 }
 
 .bill-frame {
@@ -456,17 +458,17 @@ useIsActiveAnimation(
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin-top: var(--space-2);
 }
 
 .bill-slot {
   width: min(92%, 360px);
-  height: 26px;
-  background: linear-gradient(180deg, $bill-mint 0%, $bill-brand-deep 100%);
-  border-radius: 16px 16px 4px 4px;
+  height: 24px;
+  background: linear-gradient(180deg, #32e8e2 0%, $bill-mint 35%, $bill-brand-deep 100%);
+  border-radius: 14px 14px 4px 4px;
   box-shadow:
-    inset 0 2px 6px rgba(255, 255, 255, 0.2),
-    0 4px 14px rgba(4, 31, 36, 0.25);
+    inset 0 2px 4px rgba(255, 255, 255, 0.35),
+    0 4px 14px rgba(2, 18, 38, 0.35);
   position: relative;
   z-index: 2;
   flex-shrink: 0;
@@ -478,11 +480,11 @@ useIsActiveAnimation(
   min-height: 0;
   margin-top: -4px;
   @include bill-glass-panel;
-  border-radius: 0 0 18px 18px;
-  padding: 14px 12px 72px;
+  border-radius: 0 0 20px 20px;
+  padding: 16px 14px 72px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-3);
   position: relative;
   z-index: 1;
   overflow-y: auto;
@@ -493,20 +495,20 @@ useIsActiveAnimation(
   flex-shrink: 0;
 
   &--rect {
-    padding-top: 10px;
-    border-top: 1px dashed rgba(10, 77, 100, 0.16);
+    padding-top: var(--space-3);
+    border-top: 1px dashed rgba(10, 77, 100, 0.2);
   }
 }
 
 .section-head {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
 
   h2 {
     margin: 0;
-    font-size: clamp(1.02rem, 3.8vw, 1.18rem);
+    font-size: clamp(1.02rem, 3.8vw, 1.15rem);
     font-weight: 800;
     color: $bill-brand-dark;
     letter-spacing: 0.4px;
@@ -517,26 +519,26 @@ useIsActiveAnimation(
   margin-left: auto;
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
+  padding: 2px 10px;
   border-radius: 999px;
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: var(--text-2xs);
+  font-weight: 800;
   color: $bill-brand-deep;
-  background: rgba(32, 178, 170, 0.14);
-  border: 1px solid rgba(32, 178, 170, 0.22);
+  background: rgba(0, 196, 199, 0.16);
+  border: 1px solid rgba(0, 196, 199, 0.3);
 
   &--gold {
-    color: #9a6b00;
-    background: rgba(255, 215, 0, 0.18);
-    border-color: rgba(255, 215, 0, 0.35);
+    color: #8c5d00;
+    background: rgba(255, 215, 0, 0.22);
+    border-color: rgba(255, 215, 0, 0.45);
   }
 }
 
 .grid-icon {
   display: grid;
-  grid-template-columns: repeat(2, 9px);
-  grid-template-rows: repeat(2, 9px);
-  gap: 2px;
+  grid-template-columns: repeat(2, 8px);
+  grid-template-rows: repeat(2, 8px);
+  gap: 2.5px;
   flex-shrink: 0;
 
   .sq {
@@ -544,35 +546,24 @@ useIsActiveAnimation(
     border-radius: 2px;
   }
 
-  .sq-yellow {
-    background: #ffc000;
-  }
-
-  .sq-green {
-    background: #70ad47;
-  }
-
-  .sq-blue {
-    background: #5b9bd5;
-  }
-
-  .sq-red {
-    background: #e74c3c;
-  }
+  .sq-yellow { background: #ffb703; }
+  .sq-green { background: #2a9d8f; }
+  .sq-blue { background: #219ebc; }
+  .sq-red { background: #e76f51; }
 }
 
 .chart-panel {
   display: grid;
   grid-template-columns: minmax(148px, 44%) 1fr;
-  gap: 10px 12px;
+  gap: var(--space-3);
   align-items: center;
-  padding: 10px 8px 10px 6px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.62);
+  padding: 12px 10px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.85);
   border-radius: 16px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    0 6px 18px rgba(4, 31, 36, 0.06);
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 4px 16px rgba(2, 18, 38, 0.05);
 
   &--rect {
     align-items: stretch;
@@ -591,20 +582,20 @@ useIsActiveAnimation(
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 6px;
+  gap: var(--space-2);
 }
 
 .pie-chart {
   width: 100%;
   aspect-ratio: 1;
-  max-width: 188px;
-  min-height: 148px;
+  max-width: 184px;
+  min-height: 144px;
   margin: 0 auto;
   position: relative;
 
   &--rect {
-    max-width: 168px;
-    min-height: 136px;
+    max-width: 164px;
+    min-height: 132px;
   }
 
   :deep(canvas) {
@@ -619,52 +610,39 @@ useIsActiveAnimation(
   padding: 0 2px 0 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
   max-height: 176px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-
-  &::-webkit-scrollbar {
-    width: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(32, 178, 170, 0.35);
-    border-radius: 3px;
-  }
-
-  &--rect {
-    max-height: none;
-    gap: 5px;
-  }
 
   li {
     display: grid;
     grid-template-columns: 8px minmax(0, 1fr) auto;
     align-items: center;
-    column-gap: 6px;
-    min-height: 18px;
-    color: rgba(5, 46, 44, 0.82);
+    column-gap: var(--space-2);
+    min-height: 20px;
+    color: #072a3b;
     font-weight: 600;
-    font-size: 0.72rem;
-    line-height: 1.25;
+    font-size: var(--text-xs);
+    line-height: 1.3;
   }
 
   .is-top {
     color: $bill-brand-dark;
-    font-weight: 700;
+    font-weight: 800;
 
     .value {
-      color: $bill-brand-deep;
+      color: #054863;
+      font-weight: 800;
     }
   }
 
   .dot {
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     flex-shrink: 0;
-    box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.9);
   }
 
   .name {
@@ -679,43 +657,42 @@ useIsActiveAnimation(
     font-variant-numeric: tabular-nums;
     font-feature-settings: 'tnum';
     font-weight: 700;
-    color: rgba(5, 46, 44, 0.72);
+    color: #0b4d66;
     white-space: nowrap;
-    letter-spacing: -0.2px;
   }
 }
 
 .rect-note {
   margin: 0;
-  padding: 4px 6px;
+  padding: var(--space-1) var(--space-2);
   border-radius: 8px;
-  background: rgba(64, 224, 208, 0.1);
-  font-size: 0.64rem;
-  color: rgba(5, 46, 44, 0.7);
-  font-weight: 600;
+  background: rgba(0, 196, 199, 0.14);
+  font-size: var(--text-2xs);
+  color: #064057;
+  font-weight: 700;
   line-height: 1.4;
 }
 
 .section-hint {
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(10, 77, 100, 0.08);
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(10, 77, 100, 0.1);
 
   h3 {
-    font-size: 0.92rem;
+    font-size: var(--text-sm);
     color: $bill-brand-dark;
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin: 0 0 6px;
+    gap: var(--space-1);
+    margin: 0 0 var(--space-2);
     font-weight: 800;
 
     :deep(.tip-icon) {
-      width: 1.05em;
-      height: 1.05em;
-      color: #ff3b6d;
+      width: 1.1em;
+      height: 1.1em;
+      color: $bill-alert-red;
     }
   }
 
@@ -725,16 +702,15 @@ useIsActiveAnimation(
     max-width: 100%;
     box-sizing: border-box;
     text-align: justify;
-    text-justify: inter-ideograph;
-    font-size: 0.74rem;
-    line-height: 1.7;
-    color: rgba(5, 46, 44, 0.88);
+    font-size: var(--text-xs);
+    line-height: 1.75;
+    color: #042533;
     font-weight: 600;
   }
 
   .hl {
     display: inline;
-    background: linear-gradient(transparent 58%, rgba(58, 233, 255, 0.28) 58%);
+    background: linear-gradient(transparent 58%, rgba(0, 196, 199, 0.28) 58%);
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
   }
@@ -742,12 +718,12 @@ useIsActiveAnimation(
 
 .slide-risk-pie--compact {
   .page-headline {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     line-height: 1.25;
   }
 
   .bill-frame {
-    margin-top: 6px;
+    margin-top: var(--space-1);
   }
 
   .bill-slot {
@@ -755,12 +731,12 @@ useIsActiveAnimation(
   }
 
   .bill-paper {
-    padding: 10px 8px 14px;
-    gap: 8px;
+    padding: 10px 8px 16px;
+    gap: var(--space-2);
   }
 
   .section-head {
-    margin-bottom: 6px;
+    margin-bottom: var(--space-1);
 
     h2 {
       font-size: 0.92rem;
@@ -769,63 +745,52 @@ useIsActiveAnimation(
 
   .chart-panel {
     grid-template-columns: minmax(108px, 38%) 1fr;
-    gap: 6px 8px;
-    padding: 6px 4px;
+    gap: var(--space-2);
+    padding: 8px 6px;
     border-radius: 12px;
   }
 
   .pie-chart {
-    max-width: 128px;
-    min-height: 112px;
+    max-width: 124px;
+    min-height: 110px;
 
     &--rect {
-      max-width: 116px;
-      min-height: 104px;
+      max-width: 112px;
+      min-height: 100px;
     }
   }
 
   .rank-list {
-    max-height: 128px;
+    max-height: 124px;
     gap: 2px;
 
     li {
-      font-size: 0.62rem;
-      min-height: 15px;
-      column-gap: 4px;
+      font-size: 0.64rem;
+      min-height: 16px;
     }
 
     .dot {
       width: 6px;
       height: 6px;
     }
-
-    &--rect {
-      max-height: none;
-      gap: 3px;
-
-      li {
-        font-size: 0.68rem;
-        min-height: 18px;
-      }
-    }
   }
 
   .rect-note {
-    font-size: 0.56rem;
-    padding: 3px 5px;
+    font-size: 0.58rem;
+    padding: 2px 4px;
   }
 
   .section-hint {
-    margin-top: 6px;
-    padding: 8px;
+    margin-top: var(--space-1);
+    padding: var(--space-2);
 
     h3 {
       font-size: 0.8rem;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .highlight-lines {
-      font-size: 0.64rem;
+      font-size: 0.65rem;
       line-height: 1.55;
     }
   }
@@ -837,17 +802,17 @@ useIsActiveAnimation(
   }
 
   .chart-panel {
-    grid-template-columns: minmax(100px, 36%) 1fr;
+    grid-template-columns: minmax(96px, 35%) 1fr;
   }
 
   .rank-list li {
-    font-size: 0.6rem;
+    font-size: 0.62rem;
   }
 }
 
 @media (max-height: 700px) {
   .bill-frame {
-    margin-top: 6px;
+    margin-top: 4px;
   }
 
   .section-hint .highlight-lines {

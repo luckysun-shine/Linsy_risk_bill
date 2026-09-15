@@ -37,7 +37,6 @@
     </swiper>
 
     <template v-if="isReady">
-      <BgmPlayer :src="bgmSrc" />
       <SwipeHint :visible="showSwipeHint" :on-cover="activeIndex === 0" />
     </template>
 
@@ -68,7 +67,6 @@ import { billActiveIndexKey, billGoNextKey } from '@/composables/useBillSlide'
 import { installBillTouchGuard } from '@/composables/useBillTouchGuard'
 import SlideLoading from '@/components/slides/SlideLoading.vue'
 import SlideCover from '@/components/slides/SlideCover.vue'
-import BgmPlayer from '@/components/common/BgmPlayer.vue'
 import SwipeHint from '@/components/common/SwipeHint.vue'
 import LandscapeTip from '@/components/common/LandscapeTip.vue'
 
@@ -115,8 +113,6 @@ let swipeEndTimer: ReturnType<typeof setTimeout> | null = null
 let prefetchTimer: ReturnType<typeof setTimeout> | null = null
 
 provide(billActiveIndexKey, activeIndex)
-
-const bgmSrc = computed(() => billData.value?.assets?.bgm || '/audio/bgm.mp3')
 
 const showSwipeHint = computed(() => {
   const last = visiblePages.value.length - 1

@@ -6,7 +6,9 @@
     :aria-label="isPlaying ? '关闭音乐' : '开启音乐'"
     @click="toggle"
   >
-    <span class="disc" />
+    <span class="disc">
+      <span class="disc__center" />
+    </span>
   </button>
   <audio
     v-if="src"
@@ -92,35 +94,75 @@ onUnmounted(() => {
   z-index: 60;
   width: 44px;
   height: 44px;
-  border: none;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.22);
-  backdrop-filter: blur(6px);
+  background: rgba(4, 31, 56, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(2, 18, 38, 0.35);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
+
+  &:active {
+    transform: scale(0.92);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $bill-accent-yellow;
+    outline-offset: 3px;
+  }
 }
 
 .disc {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: conic-gradient(from 0deg, $bill-accent-yellow, $bill-accent-orange, $bill-aurora, $bill-accent-yellow);
+  position: relative;
+  background: conic-gradient(
+    from 0deg,
+    $bill-accent-yellow 0%,
+    $bill-accent-orange 25%,
+    $bill-aurora 50%,
+    $bill-link-blue 75%,
+    $bill-accent-yellow 100%
+  );
   box-shadow:
-    inset 0 0 0 4px rgba(255, 255, 255, 0.9),
-    0 0 16px rgba(64, 224, 208, 0.35);
-  transition: transform 0.2s ease;
+    inset 0 0 0 2px rgba(255, 255, 255, 0.9),
+    0 0 12px rgba(0, 196, 199, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+
+  &__center {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #021226;
+    border: 1.5px solid #fff;
+  }
 }
 
 .bgm-btn.playing .disc {
-  animation: spin 4s linear infinite;
+  animation: disc-spin 3.6s linear infinite;
 }
 
-@keyframes spin {
+@keyframes disc-spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bgm-btn.playing .disc {
+    animation: none;
+    filter: drop-shadow(0 0 4px $bill-accent-yellow);
   }
 }
 </style>

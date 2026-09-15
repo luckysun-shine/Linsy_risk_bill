@@ -90,7 +90,9 @@ watch(
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 4px;
+  padding-top: var(--space-1);
+  padding-bottom: max(72px, env(safe-area-inset-bottom));
+  box-sizing: border-box;
 }
 
 .ribbon {
@@ -103,72 +105,85 @@ watch(
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 12px;
+  margin-top: var(--space-2);
 }
 
 .honor-card {
   position: relative;
   width: min(340px, 88vw);
-  padding: 36px 24px 28px;
-  border-radius: 20px;
+  padding: 36px 24px 26px;
+  border-radius: 22px;
   background-size: 100% 100%;
   text-align: center;
   box-shadow: $bill-card-shadow;
-  background-color: $bill-card-glass;
+  background-color: $bill-card-glass-solid;
+  border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
 .card-ip {
   position: absolute;
   right: -8px;
-  top: -20px;
-  width: min(100px, 26vw);
-  filter: drop-shadow(0 6px 10px rgba(8, 66, 93, 0.15));
+  top: -24px;
+  width: min(104px, 28vw);
+  filter: drop-shadow(0 8px 16px rgba(2, 18, 38, 0.25));
 }
 
 .year {
-  font-size: 0.88rem;
-  color: $bill-brand-deep;
+  margin: 0;
+  font-size: var(--text-xs);
+  color: #064057;
   letter-spacing: 2px;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .name {
-  margin: 14px 0 4px;
-  font-size: 1.65rem;
+  margin: 12px 0 4px;
+  font-size: 1.75rem;
   color: $bill-brand-dark;
-  font-weight: 800;
+  font-weight: 900;
+  letter-spacing: 0.5px;
 }
 
 .dept {
-  font-size: 0.9rem;
-  color: $bill-brand;
+  margin: 0;
+  font-size: var(--text-sm);
+  color: #0b5f7e;
+  font-weight: 650;
 }
 
 .keyword-wrap {
-  margin: 24px auto 18px;
-  padding: 14px 18px;
-  border: 2px dashed $bill-accent-gold;
-  border-radius: 12px;
-  background: rgba(255, 239, 0, 0.18);
+  margin: 22px auto 16px;
+  padding: 12px 18px;
+  border: 2px dashed rgba(255, 140, 0, 0.45);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255, 248, 220, 0.6) 0%, rgba(255, 235, 150, 0.3) 100%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .keyword {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: $bill-link-blue;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #054863;
+  letter-spacing: 1px;
 }
 
 .footer {
-  font-size: 0.78rem;
-  color: $bill-brand;
-  opacity: 0.85;
+  margin: 0;
+  font-size: var(--text-xs);
+  color: #084c48;
+  font-weight: 600;
 }
 
 .tip {
-  margin-top: 8px;
-  font-size: 0.85rem;
-  @include bill-body-text;
-  opacity: 0.85;
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 8px rgba(2, 18, 38, 0.7);
 }
 
 .poster-preview {

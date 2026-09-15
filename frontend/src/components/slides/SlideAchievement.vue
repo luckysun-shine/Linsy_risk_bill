@@ -179,7 +179,7 @@ useIsActiveAnimation(isActive, (tl) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4px 0 0;
+  padding: var(--space-1) 0 0;
   box-sizing: border-box;
 }
 
@@ -195,9 +195,9 @@ useIsActiveAnimation(isActive, (tl) => {
   max-width: 400px;
   flex: 1;
   min-height: 0;
-  margin-top: 12px;
-  margin-bottom: 8px;
-  padding: 12px 0 0;
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-2);
+  padding: 14px 0 0;
   display: flex;
   flex-direction: column;
   @include bill-glass-panel;
@@ -208,14 +208,14 @@ useIsActiveAnimation(isActive, (tl) => {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 10px;
-  padding: 0 14px 10px;
+  gap: var(--space-2);
+  padding: 0 16px 12px;
   flex-shrink: 0;
-  border-bottom: 1px solid rgba(10, 77, 100, 0.08);
+  border-bottom: 1px solid rgba(10, 77, 100, 0.1);
 
   h2 {
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 800;
     color: $bill-brand-dark;
   }
@@ -223,21 +223,21 @@ useIsActiveAnimation(isActive, (tl) => {
 
 .tree-panel__sub {
   margin: 3px 0 0;
-  font-size: 0.62rem;
-  font-weight: 600;
-  color: rgba(5, 46, 44, 0.55);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: #064057;
 }
 
 .scroll-hint {
   flex-shrink: 0;
-  font-size: 0.62rem;
+  font-size: var(--text-2xs);
   font-weight: 700;
-  color: rgba(5, 46, 44, 0.55);
-  padding: 4px 9px;
+  color: #084c48;
+  padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid rgba(10, 77, 100, 0.08);
-  animation: hintPulse 2.2s ease-in-out infinite;
+  background: rgba(0, 196, 199, 0.14);
+  border: 1px solid rgba(0, 196, 199, 0.3);
+  animation: hintPulse 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
 .tree-panel.is-interacted .scroll-hint {
@@ -248,7 +248,7 @@ useIsActiveAnimation(isActive, (tl) => {
 @keyframes hintPulse {
   0%,
   100% {
-    opacity: 0.55;
+    opacity: 0.6;
     transform: translateY(0);
   }
   50% {
@@ -265,18 +265,7 @@ useIsActiveAnimation(isActive, (tl) => {
   overflow-y: auto;
   overscroll-behavior-y: contain;
   touch-action: pan-y;
-  padding: 14px 12px 16px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(20, 143, 136, 0.4) transparent;
-
-  &::-webkit-scrollbar {
-    width: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(20, 143, 136, 0.4);
-    border-radius: 999px;
-  }
+  padding: 16px 14px;
 }
 
 .vtree {
@@ -289,11 +278,11 @@ useIsActiveAnimation(isActive, (tl) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
 
   p {
     margin: 0;
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     font-weight: 800;
     color: $bill-brand-dark;
   }
@@ -305,11 +294,11 @@ useIsActiveAnimation(isActive, (tl) => {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 1.1rem;
-  border: 2px solid rgba(255, 255, 255, 0.75);
+  font-size: 1.15rem;
+  border: 2px solid rgba(255, 255, 255, 0.85);
   box-shadow:
-    0 6px 14px rgba(4, 31, 36, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    0 6px 14px rgba(2, 18, 38, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 
   &--root {
     background: linear-gradient(145deg, #0a5c58, #148f88);
@@ -319,14 +308,14 @@ useIsActiveAnimation(isActive, (tl) => {
     width: 36px;
     height: 36px;
     font-size: 0.95rem;
-    background: linear-gradient(145deg, #40e0d0, #20b2aa);
+    background: linear-gradient(145deg, #22e4e0, #00c4c7);
   }
 
   &--risk {
     width: 36px;
     height: 36px;
     font-size: 0.95rem;
-    background: linear-gradient(145deg, #0a3d42, #0a5c58);
+    background: linear-gradient(145deg, #094046, #0a5c58);
   }
 }
 
@@ -335,7 +324,7 @@ useIsActiveAnimation(isActive, (tl) => {
   height: 18px;
   margin: 6px auto 0;
   border-radius: 999px;
-  background: linear-gradient(180deg, #0a5c58, #20b2aa);
+  background: linear-gradient(180deg, #0a5c58, #00c4c7);
 }
 
 .vtree-fork {
@@ -344,7 +333,7 @@ useIsActiveAnimation(isActive, (tl) => {
   padding-top: 14px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: var(--space-4);
 
   &__rail {
     position: absolute;
@@ -353,7 +342,7 @@ useIsActiveAnimation(isActive, (tl) => {
     bottom: 24px;
     width: 6px;
     border-radius: 999px;
-    background: linear-gradient(180deg, #20b2aa, #0a5c58 40%, #148f88);
+    background: linear-gradient(180deg, #00c4c7, #0a5c58 40%, #148f88);
   }
 }
 
@@ -368,7 +357,7 @@ useIsActiveAnimation(isActive, (tl) => {
     width: 18px;
     height: 6px;
     border-radius: 0 999px 999px 0;
-    background: #20b2aa;
+    background: #00c4c7;
   }
 
   &--risk .vtree-branch__elbow {
@@ -379,48 +368,46 @@ useIsActiveAnimation(isActive, (tl) => {
 .branch-node {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-2);
   margin-left: 28px;
-  margin-bottom: 10px;
+  margin-bottom: var(--space-2);
 
   &__meta {
     display: flex;
     align-items: baseline;
-    gap: 8px;
+    gap: var(--space-2);
     min-width: 0;
 
     h3 {
       margin: 0;
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       font-weight: 800;
       color: $bill-brand-dark;
     }
 
     span {
-      font-size: 0.62rem;
-      font-weight: 700;
-      color: rgba(5, 46, 44, 0.5);
+      font-size: var(--text-2xs);
+      font-weight: 800;
+      color: #084c48;
     }
   }
 }
 
 .leaf-rail {
   margin: 0 0 0 46px;
-  padding: 8px 10px;
+  padding: 10px 12px;
   list-style: none;
-  border-left: 3px solid rgba(32, 178, 170, 0.45);
-  border-radius: 0 12px 12px 0;
-  background: rgba(255, 255, 255, 0.42);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-left-width: 3px;
-  border-left-color: rgba(32, 178, 170, 0.55);
+  border-radius: 0 14px 14px 0;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-left: 3.5px solid #00c4c7;
 
   li {
     position: relative;
-    padding: 4px 0 4px 12px;
-    font-size: 0.7rem;
-    font-weight: 650;
-    color: rgba(5, 46, 44, 0.84);
+    padding: 5px 0 5px 14px;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: #042533;
 
     &::before {
       content: '';
@@ -429,7 +416,7 @@ useIsActiveAnimation(isActive, (tl) => {
       top: 50%;
       width: 8px;
       height: 2px;
-      background: rgba(32, 178, 170, 0.65);
+      background: #00c4c7;
       transform: translateY(-50%);
     }
   }
@@ -441,7 +428,7 @@ useIsActiveAnimation(isActive, (tl) => {
   padding-left: 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-3);
 
   &::before {
     content: '';
@@ -469,24 +456,24 @@ useIsActiveAnimation(isActive, (tl) => {
   }
 
   &__body {
-    padding: 10px 10px 9px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.58);
-    border: 1px solid rgba(255, 255, 255, 0.65);
-    box-shadow: 0 3px 10px rgba(4, 31, 36, 0.08);
+    padding: 12px 12px 10px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 3px 10px rgba(2, 18, 38, 0.06);
   }
 
   header {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin-bottom: 7px;
-    padding-bottom: 7px;
+    gap: var(--space-2);
+    margin-bottom: 8px;
+    padding-bottom: 8px;
     border-bottom: 1px solid rgba(10, 77, 100, 0.08);
 
     h4 {
       margin: 0;
-      font-size: 0.78rem;
+      font-size: 0.85rem;
       font-weight: 800;
       color: $bill-brand-dark;
       line-height: 1.25;
@@ -494,23 +481,24 @@ useIsActiveAnimation(isActive, (tl) => {
   }
 
   &__icon {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     flex-shrink: 0;
     border-radius: 50%;
     display: grid;
     place-items: center;
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     background: linear-gradient(145deg, #0a5c58, #148f88);
-    border: 1.5px solid rgba(255, 231, 86, 0.55);
+    border: 1.5px solid rgba(255, 215, 0, 0.65);
   }
 
   &__index {
     flex-shrink: 0;
-    font-size: 0.58rem;
+    font-size: var(--text-2xs);
     font-weight: 900;
     font-variant-numeric: tabular-nums;
-    color: rgba(20, 143, 136, 0.7);
+    font-feature-settings: 'tnum';
+    color: #08524d;
   }
 
   ul {
@@ -519,28 +507,28 @@ useIsActiveAnimation(isActive, (tl) => {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 6px;
   }
 
   li {
-    padding: 3px 7px;
+    padding: 3px 9px;
     border-radius: 999px;
-    font-size: 0.6rem;
-    font-weight: 650;
-    color: rgba(5, 46, 44, 0.8);
-    background: rgba(64, 224, 208, 0.16);
+    font-size: var(--text-2xs);
+    font-weight: 700;
+    color: #053b38;
+    background: rgba(0, 196, 199, 0.18);
   }
 }
 
 .tree-panel__foot {
-  margin: 16px 2px 2px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(10, 77, 100, 0.08);
-  font-size: 0.62rem;
-  font-weight: 600;
-  color: rgba(5, 46, 44, 0.58);
+  margin: var(--space-4) 2px 2px;
+  padding-top: var(--space-2);
+  border-top: 1px solid rgba(10, 77, 100, 0.1);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: #064057;
   text-align: center;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 @media (max-height: 720px) {
@@ -557,11 +545,11 @@ useIsActiveAnimation(isActive, (tl) => {
   }
 
   .risk-node header h4 {
-    font-size: 0.72rem;
+    font-size: 0.76rem;
   }
 
   .risk-node li {
-    font-size: 0.56rem;
+    font-size: 0.58rem;
   }
 }
 </style>

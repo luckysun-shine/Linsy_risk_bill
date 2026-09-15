@@ -115,7 +115,7 @@ useIsActiveAnimation(isActive, (tl) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 18px 14px max(72px, env(safe-area-inset-bottom));
+  padding: var(--space-4) var(--space-3) max(72px, env(safe-area-inset-bottom));
   box-sizing: border-box;
 }
 
@@ -131,14 +131,14 @@ useIsActiveAnimation(isActive, (tl) => {
 .stats-card {
   position: relative;
   z-index: 2;
-  padding: 18px 18px 20px;
+  padding: 20px 18px 22px;
   overflow: hidden;
   @include bill-glass-panel;
 
   &__deco {
     position: absolute;
     inset: 18% 0 8%;
-    opacity: 0.7;
+    opacity: 0.6;
     pointer-events: none;
 
     svg {
@@ -150,12 +150,12 @@ useIsActiveAnimation(isActive, (tl) => {
   &__mascot {
     position: absolute;
     top: 6px;
-    right: 2px;
-    width: clamp(78px, 26vw, 104px);
+    right: 4px;
+    width: clamp(76px, 24vw, 100px);
     height: auto;
     object-fit: contain;
     pointer-events: none;
-    filter: drop-shadow(0 8px 14px rgba(4, 31, 36, 0.22));
+    filter: drop-shadow(0 8px 14px rgba(2, 18, 38, 0.25));
     z-index: 2;
   }
 }
@@ -164,18 +164,19 @@ useIsActiveAnimation(isActive, (tl) => {
   position: relative;
   z-index: 1;
   margin: 0;
-  max-width: calc(100% - 96px);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: rgba(5, 46, 44, 0.7);
+  max-width: calc(100% - 90px);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: #064057;
+  letter-spacing: 0.5px;
 }
 
 .dept-name {
   position: relative;
   z-index: 1;
   margin: 6px 0 16px;
-  max-width: calc(100% - 96px);
-  font-size: clamp(1.55rem, 7vw, 2rem);
+  max-width: calc(100% - 90px);
+  font-size: clamp(1.45rem, 6.8vw, 1.95rem);
   font-weight: 900;
   line-height: 1.15;
   color: $bill-brand-dark;
@@ -190,20 +191,21 @@ useIsActiveAnimation(isActive, (tl) => {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-2);
 
   li {
-    font-size: clamp(0.78rem, 2.8vw, 0.88rem);
+    font-size: clamp(0.78rem, 2.7vw, 0.88rem);
     font-weight: 650;
-    line-height: 1.55;
-    color: rgba(5, 46, 44, 0.88);
+    line-height: 1.6;
+    color: #042533;
   }
 
   .accent {
-    color: #12b886;
+    color: #0a8f7b;
     font-size: 1.35em;
     font-weight: 900;
     font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
     letter-spacing: 0.2px;
   }
 }
@@ -213,19 +215,19 @@ useIsActiveAnimation(isActive, (tl) => {
   z-index: 3;
   display: flex;
   justify-content: center;
-  gap: 18px;
+  gap: 20px;
   margin: -10px 0 -8px;
   pointer-events: none;
 
   &__ring {
-    width: 18px;
-    height: 28px;
-    border: 3.5px solid #0a5c58;
+    width: 16px;
+    height: 26px;
+    border: 3.5px solid #084c48;
     border-radius: 999px;
-    background: transparent;
+    background: linear-gradient(180deg, #1fa39b 0%, #063c39 100%);
     box-shadow:
-      inset 0 0 0 1px rgba(255, 255, 255, 0.25),
-      0 2px 4px rgba(4, 31, 36, 0.18);
+      inset 0 1px 2px rgba(255, 255, 255, 0.4),
+      0 3px 6px rgba(2, 18, 38, 0.25);
   }
 }
 
@@ -233,25 +235,25 @@ useIsActiveAnimation(isActive, (tl) => {
   position: relative;
   z-index: 2;
   margin-top: 4px;
-  padding: 16px 14px 14px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1.5px solid rgba(20, 143, 136, 0.28);
-  box-shadow: 0 10px 24px rgba(4, 31, 36, 0.12);
+  padding: 16px 16px 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(0, 196, 199, 0.25);
+  box-shadow: 0 10px 24px rgba(2, 18, 38, 0.12);
 
   &__head {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-2);
     margin: 0 0 10px;
-    padding: 5px 12px 5px 6px;
+    padding: 4px 12px 4px 6px;
     border-radius: 999px;
-    background: linear-gradient(90deg, #0a5c58, #148f88);
-    box-shadow: 0 4px 10px rgba(10, 92, 88, 0.28);
+    background: linear-gradient(90deg, #095973, #1a9e96);
+    box-shadow: 0 3px 8px rgba(9, 89, 115, 0.25);
 
     h3 {
       margin: 0;
-      font-size: 0.82rem;
+      font-size: var(--text-xs);
       font-weight: 800;
       color: #fff;
       letter-spacing: 0.5px;
@@ -267,17 +269,17 @@ useIsActiveAnimation(isActive, (tl) => {
     font-size: 0.7rem;
     font-weight: 900;
     font-style: italic;
-    color: #ff3b6d;
+    color: $bill-alert-red;
     background: #fff;
     line-height: 1;
   }
 
   &__body {
     margin: 0;
-    font-size: clamp(0.72rem, 2.5vw, 0.8rem);
-    line-height: 1.7;
+    font-size: clamp(0.74rem, 2.5vw, 0.82rem);
+    line-height: 1.75;
     font-weight: 600;
-    color: rgba(5, 46, 44, 0.86);
+    color: #042533;
   }
 }
 
@@ -293,11 +295,11 @@ useIsActiveAnimation(isActive, (tl) => {
 
   .dept-name {
     margin-bottom: 10px;
-    font-size: 1.4rem;
+    font-size: 1.35rem;
   }
 
   .metric-list {
-    gap: 7px;
+    gap: 6px;
 
     li {
       font-size: 0.74rem;
@@ -305,7 +307,7 @@ useIsActiveAnimation(isActive, (tl) => {
   }
 
   .stats-card__mascot {
-    width: 72px;
+    width: 70px;
   }
 
   .tip-card {

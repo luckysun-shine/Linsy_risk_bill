@@ -84,7 +84,9 @@ useIsActiveAnimation(isActive, (tl) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 4px;
+  padding-top: var(--space-1);
+  padding-bottom: max(72px, env(safe-area-inset-bottom));
+  box-sizing: border-box;
 }
 
 .ribbon {
@@ -92,41 +94,52 @@ useIsActiveAnimation(isActive, (tl) => {
 }
 
 .subtitle {
-  margin-top: 12px;
-  font-size: 0.88rem;
-  @include bill-body-text;
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 8px rgba(2, 18, 38, 0.7);
+  letter-spacing: 0.5px;
   text-align: center;
-  opacity: 0.88;
 }
 
 .rank-list {
   width: 100%;
-  max-width: 420px;
-  margin-top: 16px;
+  max-width: 400px;
+  margin-top: var(--space-3);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-2);
   flex: 1;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  padding: 0 4px;
 }
 
 .rank-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
+  gap: var(--space-3);
+  padding: 12px 16px;
   @include bill-glass-card;
-  border: 1px solid rgba(10, 77, 100, 0.1);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 16px rgba(2, 18, 38, 0.08);
   will-change: transform, opacity;
 
   &.top {
-    border-color: rgba(45, 115, 187, 0.35);
-    background: rgba(255, 255, 255, 0.88);
+    border-color: rgba(255, 215, 0, 0.5);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow:
+      0 6px 18px rgba(2, 18, 38, 0.1),
+      inset 0 1px 0 #fff;
   }
 
   &.top .rank-num {
-    background: linear-gradient(135deg, $bill-ribbon-start, $bill-teal);
-    color: #fff;
+    background: linear-gradient(135deg, $bill-accent-yellow, $bill-accent-gold);
+    color: #4a2800;
+    box-shadow: 0 2px 6px rgba(255, 140, 0, 0.35);
   }
 }
 
@@ -137,9 +150,9 @@ useIsActiveAnimation(isActive, (tl) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 800;
-  background: rgba(11, 75, 103, 0.12);
+  font-size: var(--text-sm);
+  font-weight: 900;
+  background: rgba(9, 89, 115, 0.12);
   color: $bill-brand-deep;
   flex-shrink: 0;
 }
@@ -151,8 +164,8 @@ useIsActiveAnimation(isActive, (tl) => {
 
 .dept {
   display: block;
-  font-size: 0.88rem;
-  font-weight: 700;
+  font-size: var(--text-sm);
+  font-weight: 800;
   color: $bill-brand-dark;
   margin-bottom: 6px;
   white-space: nowrap;
@@ -162,17 +175,17 @@ useIsActiveAnimation(isActive, (tl) => {
 
 .bar-track {
   height: 6px;
-  border-radius: 3px;
-  background: rgba(11, 75, 103, 0.12);
+  border-radius: 999px;
+  background: rgba(9, 89, 115, 0.1);
   overflow: hidden;
 }
 
 .bar-fill {
   height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(90deg, $bill-ribbon-start, $bill-teal);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00c4c7, #22e4e0 60%, $bill-accent-yellow 100%);
   width: 0;
-  transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 
   &.animated {
     width: calc(var(--score) * 1%);
@@ -180,15 +193,18 @@ useIsActiveAnimation(isActive, (tl) => {
 }
 
 .score {
-  font-size: 1rem;
-  font-weight: 800;
-  color: $bill-link-blue;
+  font-size: 1.1rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  color: #0b5f7e;
   flex-shrink: 0;
 }
 
 .empty {
   margin-top: 40px;
-  @include bill-body-text;
-  opacity: 0.6;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  text-shadow: 0 1px 8px rgba(2, 18, 38, 0.6);
 }
 </style>

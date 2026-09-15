@@ -95,7 +95,7 @@ useIsActiveAnimation(isActive, (tl) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 6px;
+  padding-top: var(--space-1);
   box-sizing: border-box;
 }
 
@@ -108,21 +108,22 @@ useIsActiveAnimation(isActive, (tl) => {
   max-width: 400px;
   flex: 1;
   min-height: 0;
-  margin-top: 14px;
+  margin-top: var(--space-3);
   margin-bottom: max(72px, env(safe-area-inset-bottom));
-  padding: 16px 14px 18px;
+  padding: 18px 16px;
   text-align: left;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
   @include bill-glass-panel;
 }
 
 .headline {
-  margin: 0 0 12px;
-  font-size: clamp(0.92rem, 3.2vw, 1.05rem);
+  margin: 0 0 var(--space-3);
+  font-size: clamp(0.95rem, 3.4vw, 1.08rem);
   font-weight: 700;
-  line-height: 1.45;
-  color: rgba(5, 46, 44, 0.88);
+  line-height: 1.5;
+  color: #064057;
 
   .strong {
     font-weight: 900;
@@ -131,74 +132,76 @@ useIsActiveAnimation(isActive, (tl) => {
 }
 
 .body-text {
-  margin: 0 0 10px;
-  font-size: clamp(0.72rem, 2.4vw, 0.8rem);
-  line-height: 1.7;
+  margin: 0 0 var(--space-2);
+  font-size: clamp(0.74rem, 2.5vw, 0.82rem);
+  line-height: 1.75;
   font-weight: 600;
-  color: rgba(5, 46, 44, 0.86);
+  color: #042533;
 
   .accent {
-    color: $bill-brand-deep;
-    font-size: 1.22em;
+    color: #0b4d66;
+    font-size: 1.25em;
     font-weight: 900;
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.2px;
-    background: linear-gradient(transparent 55%, rgba(255, 215, 0, 0.5) 55%);
-    padding: 0 2px;
+    font-feature-settings: 'tnum';
+    letter-spacing: 0.3px;
+    background: linear-gradient(transparent 55%, rgba(255, 215, 0, 0.45) 55%);
+    padding: 0 3px;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
   }
 }
 
 .section-hint {
-  margin: 12px 0;
-  padding: 10px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(10, 77, 100, 0.08);
+  margin: var(--space-3) 0;
+  padding: var(--space-3);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(10, 77, 100, 0.1);
 
   h3 {
-    margin: 0 0 6px;
+    margin: 0 0 var(--space-2);
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 0.92rem;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
     font-weight: 800;
     color: $bill-brand-dark;
   }
 
   .praise-icon {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1;
   }
 
   .highlight-lines {
     margin: 0;
-    font-size: clamp(0.7rem, 2.3vw, 0.78rem);
-    line-height: 1.7;
+    font-size: clamp(0.72rem, 2.4vw, 0.8rem);
+    line-height: 1.75;
     font-weight: 600;
-    color: rgba(5, 46, 44, 0.88);
+    color: #042533;
   }
 
   .accent {
     display: inline;
-    color: $bill-brand-deep;
-    font-size: 1.22em;
+    color: #0b4d66;
+    font-size: 1.25em;
     font-weight: 900;
     font-variant-numeric: tabular-nums;
-    background: linear-gradient(transparent 55%, rgba(255, 215, 0, 0.5) 55%);
-    padding: 0 2px;
+    font-feature-settings: 'tnum';
+    background: linear-gradient(transparent 55%, rgba(255, 215, 0, 0.45) 55%);
+    padding: 0 3px;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
   }
 }
 
 .closing {
-  margin: 0 0 8px;
-  font-size: clamp(0.7rem, 2.3vw, 0.76rem);
-  line-height: 1.65;
+  margin: 0 0 var(--space-2);
+  font-size: clamp(0.72rem, 2.4vw, 0.78rem);
+  line-height: 1.7;
   font-weight: 600;
-  color: rgba(5, 46, 44, 0.78);
+  color: #064057;
 
   &:last-child {
     margin-bottom: 0;
@@ -207,22 +210,22 @@ useIsActiveAnimation(isActive, (tl) => {
 
 @media (max-height: 700px) {
   .panel {
-    margin-top: 10px;
+    margin-top: 8px;
     padding: 12px;
   }
 
   .headline {
-    font-size: 0.88rem;
+    font-size: 0.9rem;
   }
 
   .body-text,
   .closing {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     line-height: 1.55;
   }
 
   .section-hint {
-    margin: 8px 0;
+    margin: 6px 0;
     padding: 8px;
 
     h3 {
@@ -230,7 +233,7 @@ useIsActiveAnimation(isActive, (tl) => {
     }
 
     .highlight-lines {
-      font-size: 0.66rem;
+      font-size: 0.68rem;
     }
   }
 }
