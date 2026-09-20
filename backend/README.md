@@ -74,7 +74,7 @@ npm run migrate && npm run seed && npm run dev
 | POST | `/api/admin/import` | JWT / API Key | 导入单条账单 |
 | POST | `/api/admin/import/bulk` | JWT / API Key | 批量导入 |
 | GET/POST | `/api/admin/links` | Admin JWT | 链接列表 / 生成 |
-| GET | `/api/admin/stats` | Admin JWT | 访问统计 |
+| GET | `/api/admin/stats` | Admin JWT | 访问统计（总览 / 按日 / 按链接 / 最近记录） |
 
 管理后台 UI 见仓库根目录 `admin/`（端口 5180）。
 

@@ -9,6 +9,9 @@
         <el-menu-item index="/">
           <span>年度配置</span>
         </el-menu-item>
+        <el-menu-item index="/stats">
+          <span>访问统计</span>
+        </el-menu-item>
         <el-menu-item index="/users">
           <span>账号管理</span>
         </el-menu-item>
@@ -78,6 +81,7 @@ const auth = useAuthStore()
 
 const active = computed(() => {
   if (route.path.startsWith('/users')) return '/users'
+  if (route.path.startsWith('/stats')) return '/stats'
   if (route.path.startsWith('/campaigns')) return '/'
   return route.path
 })
@@ -85,6 +89,7 @@ const active = computed(() => {
 const title = computed(() => {
   if (route.name === 'campaign-edit') return '编辑账单内容'
   if (route.name === 'users') return '账号管理'
+  if (route.name === 'stats') return '访问统计'
   return '年度账单配置'
 })
 

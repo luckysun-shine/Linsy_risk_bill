@@ -196,11 +196,35 @@ export async function getStats(
   next: NextFunction
 ): Promise<void> {
   try {
-    const query = req.query as { year?: string; from?: string; to?: string };
+    const q = req.query as {
+      year?: string;
+      from?: string;
+      to?: string;
+      campaign_id?: string;
+    };
+
+    let from: Date | undefined;
+    let to: Date | undefined;
+    if (q.from) {
+      from = new Date(q.from);
+      // YYYY-MM-DD → 当日 00:00:00
+      if (/^\d{4}-\d{2}-\d{2}$/.test(q.from)) {
+        from.setHours(0, 0, 0, 0);
+      }
+    }
+    if (q.to) {
+      to = new Date(q.to);
+      // YYYY-MM-DD → 当日 23:59:59.999
+      if (/^\d{4}-\d{2}-\d{2}$/.test(q.to)) {
+        to.setHours(23, 59, 59, 999);
+      }
+    }
+
     const stats = await getAccessStats({
-      year: query.year ? parseInt(query.year, 10) : undefined,
-      from: query.from ? new Date(query.from) : undefined,
-      to: query.to ? new Date(query.to) : undefined,
+      year: q.year ? parseInt(q.year, 10) : undefined,
+      from,
+      to,
+      campaignId: q.campaign_id,
     });
     res.json({ success: true, data: stats });
   } catch (error) {

@@ -87,10 +87,17 @@ export const linkIdParamsSchema = z.object({
   id: z.string().uuid(),
 });
 
+/** 支持 ISO datetime 或 YYYY-MM-DD */
+const dateOrDateTime = z
+  .string()
+  .refine((v) => !Number.isNaN(Date.parse(v)), { message: 'Invalid date' })
+  .optional();
+
 export const statsQuerySchema = z.object({
   year: z.coerce.number().int().optional(),
-  from: z.string().datetime().optional(),
-  to: z.string().datetime().optional(),
+  from: dateOrDateTime,
+  to: dateOrDateTime,
+  campaign_id: z.string().uuid().optional(),
 });
 
 export const createApiKeySchema = z.object({
