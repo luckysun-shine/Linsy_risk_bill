@@ -133,11 +133,7 @@ useIsActiveAnimation(isActive, (tl) => {
 .edu-item {
   padding: 14px 14px 12px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 4px 14px rgba(2, 18, 38, 0.05);
+  @include bill-glass-inset;
 }
 
 .edu-item__head {
@@ -207,8 +203,7 @@ useIsActiveAnimation(isActive, (tl) => {
   margin-top: var(--space-3);
   padding: var(--space-3);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(10, 77, 100, 0.1);
+  @include bill-glass-inset;
 
   h3 {
     font-size: var(--text-sm);

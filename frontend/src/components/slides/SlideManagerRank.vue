@@ -123,14 +123,10 @@ useIsActiveAnimation(isActive, (tl) => {
   gap: var(--space-3);
   padding: 12px 16px;
   @include bill-glass-card;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 16px rgba(2, 18, 38, 0.08);
   will-change: transform, opacity;
 
   &.top {
-    border-color: rgba(255, 215, 0, 0.5);
-    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(255, 215, 0, 0.55);
     box-shadow:
       0 6px 18px rgba(2, 18, 38, 0.1),
       inset 0 1px 0 #fff;

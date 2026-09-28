@@ -558,12 +558,8 @@ useIsActiveAnimation(
   gap: var(--space-3);
   align-items: center;
   padding: 12px 10px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.85);
   border-radius: 16px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 4px 16px rgba(2, 18, 38, 0.05);
+  @include bill-glass-inset;
 
   &--rect {
     align-items: stretch;
@@ -677,8 +673,7 @@ useIsActiveAnimation(
   margin-top: var(--space-2);
   padding: var(--space-3);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(10, 77, 100, 0.1);
+  @include bill-glass-inset;
 
   h3 {
     font-size: var(--text-sm);

@@ -26,15 +26,15 @@ $bill-link-blue: #0b7aa8;
 $bill-alert-red: #f04859;
 $bill-alert-green: #2db889;
 
-// 2. Semantic Surfaces & Cards (卡片表面拟态 - 确保 WCAG 对比度)
-$bill-card-glass: rgba(255, 255, 255, 0.88);
-$bill-card-glass-solid: rgba(255, 255, 255, 0.94);
-$bill-card-border: rgba(255, 255, 255, 0.82);
-$bill-card-border-subtle: rgba(10, 77, 100, 0.12);
+// 2. Liquid glass（透出底图，文字仍落在乳白色雾面上）
+$bill-card-glass: rgba(255, 255, 255, 0.42);
+$bill-card-glass-solid: rgba(255, 255, 255, 0.5);
+$bill-card-border: rgba(255, 255, 255, 0.62);
+$bill-card-border-subtle: rgba(255, 255, 255, 0.38);
 $bill-card-shadow:
-  0 14px 40px rgba(2, 18, 38, 0.28),
-  0 2px 6px rgba(2, 18, 38, 0.08),
-  inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  inset 0 1px 0 rgba(255, 255, 255, 0.82),
+  inset 0 -1px 0 rgba(255, 255, 255, 0.18),
+  0 18px 42px rgba(2, 18, 38, 0.22);
 
 // 3. Spacing Scale (8px 基础网格系统)
 $space-1: 4px;
@@ -73,17 +73,28 @@ $duration-page: 350ms;
 }
 
 @mixin bill-glass-card {
-  background: $bill-card-glass-solid;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.58) 0%,
+    rgba(255, 255, 255, 0.36) 52%,
+    rgba(255, 255, 255, 0.28) 100%
+  );
   border: 1px solid $bill-card-border;
-  border-radius: 20px;
+  border-radius: 22px;
   box-shadow: $bill-card-shadow;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(28px) saturate(1.75);
+  -webkit-backdrop-filter: blur(28px) saturate(1.75);
 }
 
 @mixin bill-glass-panel {
   @include bill-glass-card;
-  background: $bill-card-glass-solid;
+}
+
+// 嵌套在毛玻璃卡片里的信息块：不再叠一层实底，只加一层薄雾
+@mixin bill-glass-inset {
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
 }
 
 @mixin bill-ribbon {

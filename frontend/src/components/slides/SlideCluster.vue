@@ -156,8 +156,7 @@ useIsActiveAnimation(isActive, (tl) => {
   margin: var(--space-3) 0;
   padding: var(--space-3);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(10, 77, 100, 0.1);
+  @include bill-glass-inset;
 
   h3 {
     margin: 0 0 var(--space-2);

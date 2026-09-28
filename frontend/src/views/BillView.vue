@@ -336,6 +336,7 @@ onUnmounted(() => {
   :deep(.panel) {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.86) !important;
   }
 }
 </style>

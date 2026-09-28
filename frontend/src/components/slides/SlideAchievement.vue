@@ -398,8 +398,7 @@ useIsActiveAnimation(isActive, (tl) => {
   padding: 10px 12px;
   list-style: none;
   border-radius: 0 14px 14px 0;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  @include bill-glass-inset;
   border-left: 3.5px solid #00c4c7;
 
   li {
@@ -458,9 +457,7 @@ useIsActiveAnimation(isActive, (tl) => {
   &__body {
     padding: 12px 12px 10px;
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.85);
-    box-shadow: 0 3px 10px rgba(2, 18, 38, 0.06);
+    @include bill-glass-inset;
   }
 
   header {

@@ -237,9 +237,8 @@ useIsActiveAnimation(isActive, (tl) => {
   margin-top: 4px;
   padding: 16px 16px 14px;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(0, 196, 199, 0.25);
-  box-shadow: 0 10px 24px rgba(2, 18, 38, 0.12);
+  @include bill-glass-card;
+  border-color: rgba(255, 255, 255, 0.55);
 
   &__head {
     display: inline-flex;

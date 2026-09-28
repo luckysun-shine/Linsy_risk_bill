@@ -197,11 +197,7 @@ defineExpose({ renderChart, scrollRef })
   flex-shrink: 0;
   padding: 12px 10px 10px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 4px 16px rgba(2, 18, 38, 0.05);
+  @include bill-glass-inset;
 }
 
 .rect-block__head {
@@ -299,14 +295,14 @@ defineExpose({ renderChart, scrollRef })
   margin-top: 6px;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(0, 196, 199, 0.22);
-  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.28);
 }
 
 .rect-table-labels {
   flex: 0 0 58px;
   width: 58px;
-  background: rgba(225, 246, 244, 0.85);
+  background: rgba(225, 246, 244, 0.48);
   border-right: 1px solid rgba(0, 196, 199, 0.25);
   z-index: 2;
   box-shadow: 2px 0 8px rgba(2, 18, 38, 0.05);
