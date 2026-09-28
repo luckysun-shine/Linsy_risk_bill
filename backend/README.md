@@ -25,7 +25,7 @@ cp .env.example .env
 DATABASE_URL=mysql://root:你的密码@127.0.0.1:3306/linsy_risk_bill
 ```
 
-`BASE_URL` 用于发布部门外链，请改成手机可访问的 H5 地址（如 `http://<局域网IP>:5173`）。
+`BASE_URL` 用于发布部门外链，正式环境为 `https://linsyriskbill.luckysun.vip`。本地调试可改为 `http://localhost:5173`。修改后需重启 API，已发布链接会按新地址重新拼接。
 
 3. 安装依赖并初始化：
 

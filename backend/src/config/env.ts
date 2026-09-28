@@ -14,7 +14,7 @@ const envSchema = z.object({
   RATE_LIMIT_WINDOW_MS: z.coerce.number().default(900000),
   RATE_LIMIT_MAX_REQUESTS: z.coerce.number().default(100),
   LOG_LEVEL: z.enum(['error', 'warn', 'info', 'debug']).default('info'),
-  BASE_URL: z.string().url().default('http://localhost:5173'),
+  BASE_URL: z.string().url().default('https://linsyriskbill.luckysun.vip'),
 });
 
 const parsed = envSchema.safeParse(process.env);

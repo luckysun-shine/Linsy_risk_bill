@@ -53,7 +53,8 @@ npm install
 npm run dev
 ```
 
-访问：http://localhost:5173/bill/2025?token=\<token\>  
+正式访问：https://linsyriskbill.luckysun.vip/bill/2025?token=\<token\>  
+本地开发：http://localhost:5173/bill/2025?token=\<token\>  
 无 Token 时使用本地 Mock 数据。
 
 ## 核心能力（现行）
