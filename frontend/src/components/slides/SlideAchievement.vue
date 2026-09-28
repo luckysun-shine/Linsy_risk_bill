@@ -15,8 +15,14 @@
       >
         <header class="tree-panel__head">
           <div>
-            <h2>{{ tree.rootTitle }}</h2>
-            <p class="tree-panel__sub">覆盖整改与全链路风险分类</p>
+            <h2 v-if="layout === 'tree'">{{ tree.rootTitle }}</h2>
+            <p class="tree-panel__sub">
+              {{
+                layout === 'catalog'
+                  ? `整改 ${tree.rectification.items.length} 类 · 风险 ${riskCategories.length} 类`
+                  : '覆盖整改与全链路风险分类'
+              }}
+            </p>
           </div>
           <span class="scroll-hint" aria-hidden="true">上滑浏览</span>
         </header>
@@ -28,7 +34,47 @@
           @touchstart.passive="onScrollInteract"
           @wheel="onScrollInteract"
         >
-          <div class="vtree">
+          <div v-if="layout === 'catalog'" class="catalog">
+            <section class="catalog-block catalog-block--rect">
+              <header class="catalog-block__head">
+                <CatalogMark name="整改分类" />
+                <h3>整改分类</h3>
+                <span>{{ tree.rectification.items.length }} 类</span>
+              </header>
+              <ul class="rect-pills">
+                <li v-for="item in tree.rectification.items" :key="item">
+                  <CatalogMark :name="item" />
+                  <span>{{ item }}</span>
+                </li>
+              </ul>
+            </section>
+
+            <section class="catalog-block catalog-block--risk">
+              <header class="catalog-block__head">
+                <CatalogMark name="风险分类" />
+                <h3>风险分类</h3>
+                <span>{{ riskCategories.length }} 类</span>
+              </header>
+              <ol class="risk-index">
+                <li v-for="(cat, index) in riskCategories" :key="cat.name">
+                  <div class="risk-index__main">
+                    <CatalogMark :name="cat.name" />
+                    <h4>
+                      <span class="risk-index__no">{{
+                        String(index + 1).padStart(2, '0')
+                      }}</span>
+                      {{ cat.name }}
+                    </h4>
+                  </div>
+                  <ul class="risk-index__kids">
+                    <li v-for="child in cat.children" :key="child">{{ child }}</li>
+                  </ul>
+                </li>
+              </ol>
+            </section>
+          </div>
+
+          <div v-else class="vtree">
             <!-- 根 -->
             <div class="vtree-root">
               <div class="node-orb node-orb--root" aria-hidden="true">🌳</div>
@@ -100,7 +146,7 @@
             </div>
           </div>
 
-          <p class="tree-panel__foot">
+          <p v-if="layout === 'tree'" class="tree-panel__foot">
             审计防线价值凸显，由抑转扬 · 覆盖全链路风险与整改分类
           </p>
         </div>
@@ -119,6 +165,10 @@ import { animateSlideEntrance } from '@/composables/useSlideEntrance'
 import { mockRiskClassificationTree } from '@/data/riskClassificationTreeData'
 import SlideShell from '@/components/common/SlideShell.vue'
 import PageRibbon from '@/components/common/PageRibbon.vue'
+import CatalogMark from '@/components/common/CatalogMark.vue'
+
+/** 展示形式。不满意目录时可改回 'tree' */
+const layout = 'catalog' as 'catalog' | 'tree'
 
 const props = defineProps<SlideProps>()
 const { isActive } = useBillSlide(props.slideIndex)
@@ -222,10 +272,15 @@ useIsActiveAnimation(isActive, (tl) => {
 }
 
 .tree-panel__sub {
-  margin: 3px 0 0;
-  font-size: var(--text-xs);
-  font-weight: 700;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
   color: #064057;
+}
+
+.tree-panel__head h2 + .tree-panel__sub {
+  margin-top: 3px;
 }
 
 .scroll-hint {
@@ -266,6 +321,138 @@ useIsActiveAnimation(isActive, (tl) => {
   overscroll-behavior-y: contain;
   touch-action: pan-y;
   padding: 16px 14px;
+}
+
+.catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.catalog-block__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: #fff;
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    color: #fff;
+  }
+
+  span {
+    margin-left: auto;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  :deep(.catalog-mark) {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+  }
+}
+
+.catalog-block--rect .catalog-block__head {
+  background: linear-gradient(90deg, #0a8f86 0%, #22e4e0 100%);
+  box-shadow: 0 8px 18px rgba(10, 143, 134, 0.28);
+}
+
+.catalog-block--risk .catalog-block__head {
+  background: linear-gradient(90deg, #063b4f 0%, #0a5c58 100%);
+  box-shadow: 0 8px 18px rgba(6, 59, 79, 0.28);
+}
+
+.rect-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #032333;
+    @include bill-glass-inset;
+  }
+}
+
+.risk-index {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(10, 77, 100, 0.1);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.risk-index__main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+
+  h4 {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    min-width: 0;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #032333;
+  }
+}
+
+.risk-index__no {
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  color: #0a7c76;
+}
+
+.risk-index__kids {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin: 6px 0 0;
+  padding: 0 0 0 26px;
+  list-style: none;
+
+  li {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #1a4d5c;
+  }
 }
 
 .vtree {

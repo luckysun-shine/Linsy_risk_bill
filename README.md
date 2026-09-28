@@ -62,7 +62,7 @@ npm run dev
 | 模块 | 能力 |
 |------|------|
 | H5 | 竖向翻页 + 页内滚动；Loading → 封面 → 风险分类 / 整改 / 合规数读 / 阻击战 / 部门聚焦 / 重大风险 / 分类宣导 |
-| Admin | 年度配置、Excel 主路径导入、按 H5 分屏侧边导航微调、部门发布链接、账号 CRUD / 改密 |
+| Admin | 年度配置、Excel 主路径导入、按 H5 分屏侧边导航微调、部门聚焦编辑、发布链接、访问统计、账号 CRUD / 改密 |
 | API | 账单 Token 拉取、Campaign 发布、导入 / 链接 / 统计、管理员用户管理 |
 
 ## 环境变量摘要
@@ -70,7 +70,7 @@ npm run dev
 | 工程 | 变量 | 说明 |
 |------|------|------|
 | backend | `DATABASE_URL` | MySQL 连接串 |
-| backend | `BASE_URL` | 生成部门外链时的 H5 根地址 |
+| backend | `BASE_URL` | 生成部门外链的 H5 根地址，正式为 `https://linsyriskbill.luckysun.vip` |
 | frontend / admin | `VITE_API_BASE_URL` | 默认 `/api`（开发态 Vite 代理到 3000） |
 
 ## 文档
