@@ -104,12 +104,7 @@
         </el-table-column>
         <el-table-column label="聚焦数据" width="130">
           <template #default="{ row }">
-            <el-button
-              link
-              type="primary"
-              :disabled="!isIncludeFocus(row)"
-              @click="openFocusEditor(row)"
-            >
+            <el-button link type="primary" @click.stop="openFocusEditor(row)">
               编辑聚焦
             </el-button>
           </template>
@@ -136,9 +131,15 @@
       :title="`部门聚焦 — ${focusTarget?.dept_name || ''}`"
       width="860px"
       top="5vh"
+      append-to-body
+      destroy-on-close
     >
-      <p class="hint">为该部门配置审计 / 监察 / 内控三页（也可增删页）。</p>
-      <DeptFocusEditor v-if="focusReports" v-model="focusReports" />
+      <p class="hint">
+        为该部门配置审计 / 监察 / 内控三页（也可增删页）。保存后会开启「含部门聚焦」，并写入当前表单；要更新已发出的链接，还需点「保存并发布部门链接」。
+      </p>
+      <div class="focus-dialog-body">
+        <DeptFocusEditor v-if="focusReports" v-model="focusReports" />
+      </div>
       <template #footer>
         <el-button @click="loadFocusTemplate">载入默认三页模板</el-button>
         <el-button @click="focusDialog = false">取消</el-button>
@@ -335,10 +336,32 @@ function addDepartment() {
   })
 }
 
+function clonePlain<T>(value: T): T {
+  return JSON.parse(JSON.stringify(value)) as T
+}
+
+function normalizeFocusReports(
+  reports: DeptFocusReport[] | undefined,
+  department: string
+): DeptFocusReport[] {
+  const source = reports?.length ? reports : createEmptyFocus(department)
+  return clonePlain(source).map((report) => ({
+    ...report,
+    department: report.department || department,
+    metrics: Array.isArray(report.metrics) && report.metrics.length
+      ? report.metrics.map((line) => (Array.isArray(line) && line.length ? line : [{ text: '' }]))
+      : [[{ text: '' }]],
+    tip: report.tip || '',
+    tipTitle: report.tipTitle || '风控提示',
+    eyebrow: report.eyebrow || '在过去一年中',
+    id: report.id || 'audit',
+  }))
+}
+
 function openFocusEditor(row: CampaignDepartment) {
   focusTarget.value = row
   const reports = getOverrides(row).details_data?.dept_focus_reports
-  focusReports.value = structuredClone(reports?.length ? reports : createEmptyFocus(row.dept_name))
+  focusReports.value = normalizeFocusReports(reports, row.dept_name)
   focusDialog.value = true
 }
 
@@ -501,5 +524,10 @@ onMounted(load)
   padding-left: 18px;
   color: #234;
   line-height: 1.7;
+}
+.focus-dialog-body {
+  max-height: 62vh;
+  overflow: auto;
+  padding-right: 4px;
 }
 </style>

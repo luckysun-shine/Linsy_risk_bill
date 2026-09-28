@@ -25,11 +25,11 @@
       <div v-for="(line, lIdx) in report.metrics" :key="lIdx" class="para">
         <div class="para-head">
           <span>指标行 {{ lIdx + 1 }}</span>
-          <el-button text type="danger" @click="report.metrics.splice(lIdx, 1)">删除</el-button>
+          <el-button text type="danger" @click="removeMetric(report, lIdx)">删除</el-button>
         </div>
         <MetricPartsEditor v-model="report.metrics[lIdx]" />
       </div>
-      <el-button size="small" @click="report.metrics.push([{ text: '' }])">添加指标行</el-button>
+      <el-button size="small" @click="addMetric(report)">添加指标行</el-button>
     </div>
     <el-button style="margin-top: 12px" @click="addReport">新增聚焦页</el-button>
   </div>
@@ -41,11 +41,25 @@ import MetricPartsEditor from './MetricPartsEditor.vue'
 
 const model = defineModel<DeptFocusReport[]>({ required: true })
 
+function ensureMetrics(report: DeptFocusReport) {
+  if (!Array.isArray(report.metrics)) report.metrics = []
+}
+
+function addMetric(report: DeptFocusReport) {
+  ensureMetrics(report)
+  report.metrics.push([{ text: '' }])
+}
+
+function removeMetric(report: DeptFocusReport, index: number) {
+  ensureMetrics(report)
+  report.metrics.splice(index, 1)
+}
+
 function addReport() {
   model.value.push({
     id: `focus_${model.value.length + 1}`,
     eyebrow: '在过去一年中',
-    department: '',
+    department: model.value[0]?.department || '',
     metrics: [[{ text: '' }, { text: '0', accent: true }, { text: '' }]],
     tip: '',
     tipTitle: '风控提示',
